@@ -19,6 +19,6 @@ public class Buttons : MonoBehaviour
     public void OnClickStartGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("World");
     }
 }
