@@ -3,6 +3,8 @@ using UnityEngine;
 public class ScreenCamera : MonoBehaviour
 {
     public Transform target;
+    public float minY;
+    public float maxY;
 
     float limitX = 2f;
     float limitY = 2f;
@@ -34,5 +36,9 @@ public class ScreenCamera : MonoBehaviour
             float disp = diff.y + limitY;
             transform.Translate(new Vector3(0f, disp, 0f));
         }
+
+        Vector3 tpos = transform.position;
+        tpos.y = Mathf.Clamp(transform.position.y, minY, maxY);
+        transform.position = tpos;
     }
 }

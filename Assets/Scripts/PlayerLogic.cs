@@ -64,6 +64,7 @@ public class PlayerLogic : MonoBehaviour
 
     void Update()
     {
+        bool leftBefore = left;
         State oldState = state;
         state = State.Idle;
 
@@ -181,6 +182,14 @@ public class PlayerLogic : MonoBehaviour
         var smoothedMovementFactor = _controller.isGrounded ? GroundDamping : InAirDamping;
         _velocity.x = Mathf.Lerp(_velocity.x, normalizedHorizontalSpeed * RunSpeed, Time.deltaTime * smoothedMovementFactor);
         _velocity.y += Gravity * Time.deltaTime;
+
+
+        if (leftBefore != left)
+        {
+            _velocity.y += 6f;
+            state = State.Attack;
+        }
+
 
         _controller.move(_velocity * Time.deltaTime);
         _velocity = _controller.velocity;
