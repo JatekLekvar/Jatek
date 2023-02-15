@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 
-public class BasicEnemy : MonoBehaviour
+public class BasicEnemy : Enemy
 {
 
     public List<GameObject> Waypoints = new List<GameObject>();
@@ -36,12 +36,15 @@ public class BasicEnemy : MonoBehaviour
 
     void Update()
     {
-        if(Mathf.Abs(this.transform.position.x - Waypoints[currentWaypointIndex].transform.position.x) < 0.3f){
+        if (Mathf.Abs(this.transform.position.x - Waypoints[currentWaypointIndex].transform.position.x) < 0.3f)
+        {
 
-            if(currentWaypointIndex == 0){
+            if (currentWaypointIndex == 0)
+            {
                 currentWaypointIndex = 1;
             }
-            else{
+            else
+            {
                 currentWaypointIndex = 0;
             }
         }
@@ -74,14 +77,17 @@ public class BasicEnemy : MonoBehaviour
         _velocity.x = Mathf.Lerp(_velocity.x, normalizedHorizontalSpeed * runSpeed, Time.deltaTime * smoothedMovementFactor);
         _velocity.y += gravity * Time.deltaTime;
 
-        if(Mathf.Abs(time - interpolationPeriod) < 0.4f && !nearAttack){
+        if (Mathf.Abs(time - interpolationPeriod) < 0.4f && !nearAttack)
+        {
             nearAttack = true;
         }
-        else{
+        else
+        {
             nearAttack = false;
         }
 
-        if(nearAttack){
+        if (nearAttack)
+        {
             _velocity = Vector3.zero;
         }
 
@@ -89,9 +95,10 @@ public class BasicEnemy : MonoBehaviour
         _velocity = _controller.velocity;
 
         time += Time.deltaTime;
- 
+
         //Attack
-        if (time >= interpolationPeriod) {
+        if (time >= interpolationPeriod)
+        {
             time = 0.0f;
 
             GameObject fire = (GameObject)Instantiate(firePrefab, transform.position, Quaternion.identity);
@@ -103,12 +110,18 @@ public class BasicEnemy : MonoBehaviour
             fireComp = fire.GetComponent<EnemyFire>();
             fireComp.horizontalDirection = 1f;
             fireComp.verticalDirection = 0f;
-            
+
             fire = (GameObject)Instantiate(firePrefab, transform.position, Quaternion.identity);
             fireComp = fire.GetComponent<EnemyFire>();
             fireComp.horizontalDirection = 0f;
             fireComp.verticalDirection = 1f;
         }
 
+    }
+
+    public override void Punch(Vector3 from, float force)
+    {
+        base.Punch(from, force);
+        Vector3 dir = transform.position - from;
     }
 }

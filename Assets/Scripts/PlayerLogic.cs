@@ -16,6 +16,7 @@ public class PlayerLogic : MonoBehaviour
     public List<string> heldAbilities = new List<string>();
     public GameObject firePrefab;
     public GameObject gameController;
+    public bool isPunching;
 
     private float gravity = -64f;
     private float runSpeed = 10f;
@@ -23,7 +24,7 @@ public class PlayerLogic : MonoBehaviour
     private float inAirDamping = 8f;
     private float jumpHeight = 12f;
     private float jumpLength = 0.2f;
-    private float attackLength = 0.3f;
+    private float attackLength = 0.2f;
 
     [HideInInspector]
     private float normalizedHorizontalSpeed = 0;
@@ -164,7 +165,7 @@ public class PlayerLogic : MonoBehaviour
         {
             state = State.Attack;
             _attackTimer -= Time.deltaTime;
-            _attackCooldown = 0.5f;
+            _attackCooldown = 0.1f;
 
             if (_controller.isGrounded)
             {
@@ -190,24 +191,28 @@ public class PlayerLogic : MonoBehaviour
             {
                 case State.Idle:
                     {
+                        isPunching = false;
                         _animator.Play("Idle");
                     }
                     break;
 
                 case State.Walk:
                     {
+                        isPunching = false;
                         _animator.Play("Walk");
                     }
                     break;
 
                 case State.Jump:
                     {
+                        isPunching = false;
                         _animator.Play("Jump");
                     }
                     break;
 
                 case State.Crouch:
                     {
+                        isPunching = false;
                         _animator.Play("Crouch");
                     }
                     break;
@@ -216,10 +221,12 @@ public class PlayerLogic : MonoBehaviour
                     {
                         if (spit)
                         {
+                            isPunching = false;
                             _animator.Play("Spit");
                         }
                         else
                         {
+                            isPunching = true;
                             _animator.Play("Punch");
                         }
                     }
