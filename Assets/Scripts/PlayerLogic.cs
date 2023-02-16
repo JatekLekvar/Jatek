@@ -58,6 +58,8 @@ public class PlayerLogic : MonoBehaviour
     {
         _controller = GetComponent<PlayerPhysics>();
 
+        DontDestroyOnLoad(gameObject);
+
         _controller.onControllerCollidedEvent += onControllerCollider;
         _controller.onTriggerEnterEvent += onTriggerEnterEvent;
         // _controller.onTriggerExitEvent += onTriggerExitEvent;

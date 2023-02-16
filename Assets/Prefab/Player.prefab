@@ -202,7 +202,7 @@ MonoBehaviour:
     m_Bits: 1
   triggerMask:
     serializedVersion: 2
-    m_Bits: 5248
+    m_Bits: 38016
   oneWayPlatformMask:
     serializedVersion: 2
     m_Bits: 0

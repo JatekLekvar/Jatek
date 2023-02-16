@@ -9,6 +9,10 @@ public class Parallax : MonoBehaviour
 
     void Update()
     {
+        if(target == null){
+            target = GameObject.Find("Camera").transform;
+        }
+
         for (int i = 0; i < backgroundLayers.Count; i++)
         {
             float div = (float)(i + 2);
