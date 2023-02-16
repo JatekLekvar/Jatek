@@ -119,9 +119,9 @@ public class BasicEnemy : Enemy
 
     }
 
-    public override void Punch(Vector3 from, float force)
+    public override void GetHit(Vector3 from, float force)
     {
-        base.Punch(from, force);
+        base.GetHit(from, force);
         Vector3 dir = transform.position - from;
     }
 }

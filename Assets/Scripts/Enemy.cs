@@ -5,9 +5,9 @@ public class Enemy : MonoBehaviour
     public float maxHealth;
     public float health;
 
-    public virtual void Punch(Vector3 from, float force)
+    public virtual void GetHit(Vector3 from, float damageAmount)
     {
-        health -= force;
+        health -= damageAmount;
         if (health <= 0f)
         {
             Die();

@@ -26,6 +26,9 @@ public class PlayerLogic : MonoBehaviour
     private float jumpLength = 0.2f;
     private float attackLength = 0.2f;
 
+    public float maxHealth = 300f;
+    public float currentHealth;
+
     [HideInInspector]
     private float normalizedHorizontalSpeed = 0;
 
@@ -60,6 +63,8 @@ public class PlayerLogic : MonoBehaviour
         _collider = GetComponent<BoxCollider2D>();
         gameController = GameObject.Find("Game Controller");
         gameController.GetComponent<GameController>().player = this.gameObject;
+
+        currentHealth = maxHealth;
     }
 
     void Update()
@@ -244,6 +249,15 @@ public class PlayerLogic : MonoBehaviour
         }
     }
 
+    public virtual void GetHit(Vector3 from, float damageAmount)
+    {
+        currentHealth -= damageAmount;
+        if (currentHealth <= 0f)
+        {
+            PlayerDeath();
+        }
+    }
+
     void onControllerCollider(RaycastHit2D hit)
     {
         if (hit.normal.y < 0f && _velocity.y > 0f)
@@ -267,4 +281,11 @@ public class PlayerLogic : MonoBehaviour
             //obj.transform.position.Set(-100,0,0);
         }
     }
+
+    void PlayerDeath(){
+        Debug.Log("Meghalt a player");
+        //Szólj a konktrollernek
+        Destroy(this.gameObject);
+    }
+
 }

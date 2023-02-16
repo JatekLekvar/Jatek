@@ -17,4 +17,16 @@ public class EnemyFire : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        Debug.Log("Trigger Enter");
+        PlayerLogic playerLogic = collider.gameObject.GetComponent<PlayerLogic>();
+        if (playerLogic != null)
+        {
+            playerLogic.GetHit(transform.position, 100f);
+            Debug.Log("Sebeztem a karaktert");
+        }
+    }
+
 }

@@ -10,7 +10,8 @@ public class Inventory : MonoBehaviour
     [SerializeField] private GameObject replicatorInventory;
     [SerializeField] private HealthBarController healthBarController;
     [SerializeField] private GameObject replicator;
-    [SerializeField] private GameObject player;
+    //[SerializeField] private GameObject player;
+    [SerializeField] private GameController gameController;
     public List<GameObject> inventorySlots = new List<GameObject>();
     public List<GameObject> replicatorSlots = new List<GameObject>();
     void Update()
@@ -27,7 +28,7 @@ public class Inventory : MonoBehaviour
             InGameMenuOpenClose();
         }
 
-        if(Input.GetKeyDown("e") && Time.timeScale == 1 && InRange(replicator, player))
+        if(Input.GetKeyDown("e") && Time.timeScale == 1 && InRange(replicator, gameController.player))
         {
             if(inventory.active == true){
                 inventory.gameObject.SetActive(false);   
@@ -39,7 +40,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        if(!InRange(replicator, player)){
+        if(!InRange(replicator, gameController.player)){
             inventory.gameObject.SetActive(false);
             replicatorInventory.gameObject.SetActive(false);
         }
@@ -64,7 +65,7 @@ public class Inventory : MonoBehaviour
 
 
     public bool InRange(GameObject gameObject1, GameObject gameObject2){
-        if(Mathf.Abs(gameObject1.transform.position.x - gameObject2.transform.position.x) < 2f && Mathf.Abs(replicator.transform.position.y - player.transform.position.y) < 2f){
+        if(Mathf.Abs(gameObject1.transform.position.x - gameObject2.transform.position.x) < 2f && Mathf.Abs(gameObject1.transform.position.y - gameObject2.transform.position.y) < 2f){
             return true;
         }
         else{

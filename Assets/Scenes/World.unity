@@ -7051,7 +7051,7 @@ MonoBehaviour:
   replicatorInventory: {fileID: 816723240}
   healthBarController: {fileID: 1148015298}
   replicator: {fileID: 1224241055}
-  player: {fileID: 1069717576}
+  gameController: {fileID: 1148015302}
   inventorySlots:
   - {fileID: 900511049}
   - {fileID: 0}
@@ -7065,7 +7065,6 @@ MonoBehaviour:
   replicatorSlots:
   - {fileID: 1865584633}
   - {fileID: 406737486}
-  - {fileID: 0}
 --- !u!114 &1148015302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7078,7 +7077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1f68d254263e14d9f1b32c1195588b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1069717576}
 --- !u!1001 &1219163757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8636,22 +8635,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7753868313382654801, guid: e7c5e8bfd8ab7084a90b614114bac335, type: 3}
-      propertyPath: m_Size.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7753868313382654801, guid: e7c5e8bfd8ab7084a90b614114bac335, type: 3}
-      propertyPath: m_Size.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7753868313382654801, guid: e7c5e8bfd8ab7084a90b614114bac335, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 373729701, guid: e91227d8b2d50ca429fc7ac3bf04cffa, type: 3}
-    - target: {fileID: 7753868313382654801, guid: e7c5e8bfd8ab7084a90b614114bac335, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7753868313382654802, guid: e7c5e8bfd8ab7084a90b614114bac335, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -8695,30 +8678,6 @@ PrefabInstance:
     - target: {fileID: 7753868313382654802, guid: e7c5e8bfd8ab7084a90b614114bac335, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7753868313382654804, guid: e7c5e8bfd8ab7084a90b614114bac335, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7753868313382654804, guid: e7c5e8bfd8ab7084a90b614114bac335, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7753868313382654804, guid: e7c5e8bfd8ab7084a90b614114bac335, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7753868313382654804, guid: e7c5e8bfd8ab7084a90b614114bac335, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7753868313382654805, guid: e7c5e8bfd8ab7084a90b614114bac335, type: 3}
-      propertyPath: firePrefab
-      value: 
-      objectReference: {fileID: 2524954543146020264, guid: 07754b5ff20db8449a046e5b872676d0, type: 3}
-    - target: {fileID: 7753868313382654806, guid: e7c5e8bfd8ab7084a90b614114bac335, type: 3}
-      propertyPath: ignoreOneWayPlatformsThisFrame
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7753868313382654810, guid: e7c5e8bfd8ab7084a90b614114bac335, type: 3}
       propertyPath: m_Name
