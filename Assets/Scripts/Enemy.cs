@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 
     public virtual void GetHit(Vector3 from, float damageAmount)
     {
+        Debug.Log("Enemy megütve");
         health -= damageAmount;
         if (health <= 0f)
         {
