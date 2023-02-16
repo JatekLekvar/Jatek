@@ -25,6 +25,7 @@ public class BasicEnemy : Enemy
     private float time = 0.0f;
     public float interpolationPeriod = 3f;
     private bool nearAttack = false;
+    float hitStun = 0f;
 
     void Awake()
     {
@@ -49,27 +50,29 @@ public class BasicEnemy : Enemy
             }
         }
 
-        if (_controller.isGrounded)
+        if (hitStun > 0f)
         {
-            _velocity.y = 0;
+            hitStun -= Time.deltaTime;
+            normalizedHorizontalSpeed = 0f;
         }
-
-
-        if (Waypoints[currentWaypointIndex].transform.position.x > this.transform.position.x)
+        else
         {
-            normalizedHorizontalSpeed = 1;
-            if (transform.localScale.x < 0f)
+            if (Waypoints[currentWaypointIndex].transform.position.x > this.transform.position.x)
             {
-                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                normalizedHorizontalSpeed = 1;
+                if (transform.localScale.x < 0f)
+                {
+                    transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                }
             }
-        }
 
-        else if (Waypoints[currentWaypointIndex].transform.position.x < this.transform.position.x)
-        {
-            normalizedHorizontalSpeed = -1;
-            if (transform.localScale.x > 0f)
+            else if (Waypoints[currentWaypointIndex].transform.position.x < this.transform.position.x)
             {
-                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                normalizedHorizontalSpeed = -1;
+                if (transform.localScale.x > 0f)
+                {
+                    transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                }
             }
         }
 
@@ -122,6 +125,10 @@ public class BasicEnemy : Enemy
     public override void GetHit(Vector3 from, float force)
     {
         base.GetHit(from, force);
-        Vector3 dir = transform.position - from;
+
+        float sign = Mathf.Sign(transform.position.x - from.x);
+        _velocity.y = 12f;
+        _velocity.x = sign * 20f;
+        hitStun = 0.5f;
     }
 }

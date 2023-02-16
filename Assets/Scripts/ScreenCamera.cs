@@ -9,6 +9,11 @@ public class ScreenCamera : MonoBehaviour
     float limitX = 2f;
     float limitY = 2f;
 
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Update()
     {
         Vector3 diff = target.position - transform.position;

@@ -14,7 +14,7 @@ public class Fire : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -23,6 +23,7 @@ public class Fire : MonoBehaviour
         if (enemy != null)
         {
             enemy.GetHit(transform.position, 4f);
+            Destroy(gameObject);
         }
     }
 

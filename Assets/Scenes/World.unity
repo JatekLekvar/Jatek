@@ -8282,14 +8282,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7685183893450456821, guid: 158219585d34a7c44b7e4a093ae4517b, type: 3}
-      propertyPath: triggerMask.m_Bits
-      value: 1280
-      objectReference: {fileID: 0}
-    - target: {fileID: 7685183893450456821, guid: 158219585d34a7c44b7e4a093ae4517b, type: 3}
-      propertyPath: oneWayPlatformMask.m_Bits
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7685183893450456825, guid: 158219585d34a7c44b7e4a093ae4517b, type: 3}
       propertyPath: m_Name
       value: Enemy 1

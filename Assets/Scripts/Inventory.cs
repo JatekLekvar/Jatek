@@ -17,9 +17,10 @@ public class Inventory : MonoBehaviour
     void Update()
     {
 
-        if(healthBarController.currentHealth <= 0f){
+        if (healthBarController.currentHealth <= 0f)
+        {
             Time.timeScale = 0;
-            inventory.gameObject.SetActive(false);   
+            inventory.gameObject.SetActive(false);
             healthBarController.gameOverScreen.gameObject.SetActive(true);
         }
 
@@ -28,19 +29,22 @@ public class Inventory : MonoBehaviour
             InGameMenuOpenClose();
         }
 
-        if(Input.GetKeyDown("e") && Time.timeScale == 1 && InRange(replicator, gameController.player))
+        if (Input.GetKeyDown("e") && Time.timeScale == 1 && InRange(replicator, gameController.player))
         {
-            if(inventory.active == true){
-                inventory.gameObject.SetActive(false);   
+            if (inventory.activeSelf == true)
+            {
+                inventory.gameObject.SetActive(false);
                 replicatorInventory.gameObject.SetActive(false);
             }
-            else{
+            else
+            {
                 inventory.gameObject.SetActive(true);
-                replicatorInventory.gameObject.SetActive(true);  
+                replicatorInventory.gameObject.SetActive(true);
             }
         }
 
-        if(!InRange(replicator, gameController.player)){
+        if (!InRange(replicator, gameController.player))
+        {
             inventory.gameObject.SetActive(false);
             replicatorInventory.gameObject.SetActive(false);
         }
@@ -48,11 +52,13 @@ public class Inventory : MonoBehaviour
 
     public void InGameMenuOpenClose()
     {
-        if(Time.timeScale == 1f){
+        if (Time.timeScale == 1f)
+        {
             Time.timeScale = 0f;
             inGameMenuImage.gameObject.SetActive(true);
         }
-        else{
+        else
+        {
             Time.timeScale = 1f;
             inGameMenuImage.gameObject.SetActive(false);
         }
@@ -64,18 +70,24 @@ public class Inventory : MonoBehaviour
     }
 
 
-    public bool InRange(GameObject gameObject1, GameObject gameObject2){
-        if(Mathf.Abs(gameObject1.transform.position.x - gameObject2.transform.position.x) < 2f && Mathf.Abs(gameObject1.transform.position.y - gameObject2.transform.position.y) < 2f){
+    public bool InRange(GameObject gameObject1, GameObject gameObject2)
+    {
+        if (Mathf.Abs(gameObject1.transform.position.x - gameObject2.transform.position.x) < 2f && Mathf.Abs(gameObject1.transform.position.y - gameObject2.transform.position.y) < 2f)
+        {
             return true;
         }
-        else{
+        else
+        {
             return false;
         }
     }
 
-    public void AddToInvertory(GameObject gameObject){
-        for(int i = 0; i < inventorySlots.Count; i++){
-            if(inventorySlots[i].GetComponent<InventorySlot>().abilityObj == null){
+    public void AddToInvertory(GameObject gameObject)
+    {
+        for (int i = 0; i < inventorySlots.Count; i++)
+        {
+            if (inventorySlots[i].GetComponent<InventorySlot>().abilityObj == null)
+            {
                 inventorySlots[i].GetComponent<InventorySlot>().abilityObj = gameObject;
                 inventorySlots[i].GetComponent<InventorySlot>().UpdateImage();
                 break;
@@ -83,9 +95,12 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void AddToReplicator(GameObject gameObject){
-        for(int i = 0; i < replicatorSlots.Count; i++){
-            if(replicatorSlots[i].GetComponent<InventorySlot>().abilityObj == null){
+    public void AddToReplicator(GameObject gameObject)
+    {
+        for (int i = 0; i < replicatorSlots.Count; i++)
+        {
+            if (replicatorSlots[i].GetComponent<InventorySlot>().abilityObj == null)
+            {
                 replicatorSlots[i].GetComponent<InventorySlot>().abilityObj = gameObject;
                 replicatorSlots[i].GetComponent<InventorySlot>().UpdateImage();
                 break;
