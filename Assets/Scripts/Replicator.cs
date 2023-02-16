@@ -51,7 +51,7 @@ public class Replicator : MonoBehaviour
 
         for (int i = 0; i < abilitiesToApply.Count; i++){
             switch(abilitiesToApply[i]){
-                case "speed" : playerLogic.RunSpeed += 100f;
+                case "speed" : playerLogic.RunSpeed += 50f;
                 break;
                 default : Debug.Log("Nem volt benne semmi");
                 break;

@@ -261,6 +261,8 @@ MonoBehaviour:
   isPunching: 0
   maxHealth: 300
   currentHealth: 0
+  invincibleMaxTime: 2
+  invincibleCurrentTimer: 0
 --- !u!61 &7753868313382654804
 BoxCollider2D:
   m_ObjectHideFlags: 0

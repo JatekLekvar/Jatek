@@ -43,6 +43,9 @@ public class PlayerLogic : MonoBehaviour
     private State state = State.Idle;
     private bool left;
 
+    public float invincibleMaxTime;
+    public float invincibleCurrentTimer = 0f;
+
     public float Gravity { get => gravity; set => gravity = value; }
     public float RunSpeed { get => runSpeed; set => runSpeed = value; }
     public float GroundDamping { get => groundDamping; set => groundDamping = value; }
@@ -72,6 +75,10 @@ public class PlayerLogic : MonoBehaviour
         bool leftBefore = left;
         State oldState = state;
         state = State.Idle;
+
+        if(invincibleMaxTime - invincibleCurrentTimer > 0f){
+            invincibleCurrentTimer += Time.deltaTime;
+        }
 
         bool crouch = Input.GetKey(KeyCode.S) && _controller.isGrounded;
 
@@ -251,6 +258,11 @@ public class PlayerLogic : MonoBehaviour
 
     public virtual void GetHit(Vector3 from, float damageAmount)
     {
+        if(invincibleCurrentTimer <= invincibleMaxTime){
+          return;
+        }
+
+        invincibleCurrentTimer = 0f;
         currentHealth -= damageAmount;
         if (currentHealth <= 0f)
         {
@@ -283,8 +295,7 @@ public class PlayerLogic : MonoBehaviour
     }
 
     void PlayerDeath(){
-        Debug.Log("Meghalt a player");
-        //Szólj a konktrollernek
+        gameController.GetComponent<GameController>().RefreshPlayer();
         Destroy(this.gameObject);
     }
 

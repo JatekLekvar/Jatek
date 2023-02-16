@@ -7193,6 +7193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1069717576}
+  replicator: {fileID: 1224241055}
 --- !u!1001 &1219163757
 PrefabInstance:
   m_ObjectHideFlags: 0
