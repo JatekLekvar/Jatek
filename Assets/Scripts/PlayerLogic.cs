@@ -15,6 +15,7 @@ public class PlayerLogic : MonoBehaviour
 {
     public List<string> heldAbilities = new List<string>();
     public GameObject firePrefab;
+    public GameObject gameController;
     public bool isPunching;
 
     private float gravity = -64f;
@@ -24,6 +25,9 @@ public class PlayerLogic : MonoBehaviour
     private float jumpHeight = 12f;
     private float jumpLength = 0.2f;
     private float attackLength = 0.2f;
+
+    public float maxHealth = 300f;
+    public float currentHealth;
 
     [HideInInspector]
     private float normalizedHorizontalSpeed = 0;
@@ -39,6 +43,17 @@ public class PlayerLogic : MonoBehaviour
     private State state = State.Idle;
     private bool left;
 
+    public float invincibleMaxTime;
+    public float invincibleCurrentTimer = 0f;
+
+    public float Gravity { get => gravity; set => gravity = value; }
+    public float RunSpeed { get => runSpeed; set => runSpeed = value; }
+    public float GroundDamping { get => groundDamping; set => groundDamping = value; }
+    public float InAirDamping { get => inAirDamping; set => inAirDamping = value; }
+    public float JumpHeight { get => jumpHeight; set => jumpHeight = value; }
+    public float JumpLength { get => jumpLength; set => jumpLength = value; }
+    public float AttackLength { get => attackLength; set => attackLength = value; }
+
     void Awake()
     {
         _controller = GetComponent<PlayerPhysics>();
@@ -49,19 +64,24 @@ public class PlayerLogic : MonoBehaviour
 
         _animator = GetComponent<SpriteAnimator>();
         _collider = GetComponent<BoxCollider2D>();
+        gameController = GameObject.Find("Game Controller");
+        gameController.GetComponent<GameController>().player = this.gameObject;
+
+        currentHealth = maxHealth;
     }
 
     void Update()
     {
+        bool leftBefore = left;
         State oldState = state;
         state = State.Idle;
 
-        bool crouch = Input.GetKey(KeyCode.S) && _controller.isGrounded;
-
-        if (_controller.isGrounded)
+        if (invincibleMaxTime - invincibleCurrentTimer > 0f)
         {
-            _velocity.y = 0;
+            invincibleCurrentTimer += Time.deltaTime;
         }
+
+        bool crouch = Input.GetKey(KeyCode.S) && _controller.isGrounded;
 
         if (Input.GetKey(KeyCode.D))
         {
@@ -103,13 +123,13 @@ public class PlayerLogic : MonoBehaviour
 
         if (_controller.isGrounded && Input.GetKey(KeyCode.W))
         {
-            _jumpTimer = jumpLength;
+            _jumpTimer = JumpLength;
         }
 
         if (_jumpTimer > 0f && Input.GetKey(KeyCode.W))
         {
             _jumpTimer -= Time.deltaTime;
-            _velocity.y = jumpHeight;
+            _velocity.y = JumpHeight;
         }
 
         if (!Input.GetKey(KeyCode.W))
@@ -136,7 +156,7 @@ public class PlayerLogic : MonoBehaviour
             if (state != State.Attack && _attackCooldown <= 0f && Input.GetKeyDown(KeyCode.Space))
             {
                 state = State.Attack;
-                _attackTimer = attackLength;
+                _attackTimer = AttackLength;
 
                 if (spit)
                 {
@@ -167,9 +187,17 @@ public class PlayerLogic : MonoBehaviour
             _attackCooldown -= Time.deltaTime;
         }
 
-        var smoothedMovementFactor = _controller.isGrounded ? groundDamping : inAirDamping;
-        _velocity.x = Mathf.Lerp(_velocity.x, normalizedHorizontalSpeed * runSpeed, Time.deltaTime * smoothedMovementFactor);
-        _velocity.y += gravity * Time.deltaTime;
+        var smoothedMovementFactor = _controller.isGrounded ? GroundDamping : InAirDamping;
+        _velocity.x = Mathf.Lerp(_velocity.x, normalizedHorizontalSpeed * RunSpeed, Time.deltaTime * smoothedMovementFactor);
+        _velocity.y += Gravity * Time.deltaTime;
+
+
+        if (leftBefore != left)
+        {
+            _velocity.y += 6f;
+            state = State.Attack;
+        }
+
 
         _controller.move(_velocity * Time.deltaTime);
         _velocity = _controller.velocity;
@@ -224,6 +252,25 @@ public class PlayerLogic : MonoBehaviour
         }
     }
 
+    public virtual void GetHit(Vector3 from, float damageAmount)
+    {
+        if (invincibleCurrentTimer <= invincibleMaxTime)
+        {
+            return;
+        }
+
+        float sign = Mathf.Sign(transform.position.x - from.x);
+        _velocity.y = 12f;
+        _velocity.x = sign * 12f;
+
+        invincibleCurrentTimer = 0f;
+        currentHealth -= damageAmount;
+        if (currentHealth <= 0f)
+        {
+            PlayerDeath();
+        }
+    }
+
     void onControllerCollider(RaycastHit2D hit)
     {
         if (hit.normal.y < 0f && _velocity.y > 0f)
@@ -239,9 +286,19 @@ public class PlayerLogic : MonoBehaviour
         if (obj.name == "AbilityTrigger")
         {
             obj = obj.transform.parent.gameObject;
+            gameController.GetComponent<Inventory>().AddToInvertory(obj);
             Ability ability = obj.GetComponent<Ability>();
             heldAbilities.Add(ability.identifier);
-            Destroy(obj);
+            //Destroy(obj);
+            obj.SetActive(false);
+            //obj.transform.position.Set(-100,0,0);
         }
     }
+
+    void PlayerDeath()
+    {
+        gameController.GetComponent<GameController>().RefreshPlayer();
+        Destroy(this.gameObject);
+    }
+
 }

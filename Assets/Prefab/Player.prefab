@@ -172,12 +172,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1575052868, guid: e91227d8b2d50ca429fc7ac3bf04cffa, type: 3}
+  m_Sprite: {fileID: 373729701, guid: e91227d8b2d50ca429fc7ac3bf04cffa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 21, y: 6}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -195,14 +195,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b005891a5d1c45cc8cea8c713a8bfe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ignoreOneWayPlatformsThisFrame: 0
+  ignoreOneWayPlatformsThisFrame: 1
   _skinWidth: 0.02
   platformMask:
     serializedVersion: 2
     m_Bits: 1
   triggerMask:
     serializedVersion: 2
-    m_Bits: 1152
+    m_Bits: 5248
   oneWayPlatformMask:
     serializedVersion: 2
     m_Bits: 0
@@ -256,8 +256,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heldAbilities: []
-  firePrefab: {fileID: 0}
+  firePrefab: {fileID: 2524954543146020264, guid: 07754b5ff20db8449a046e5b872676d0, type: 3}
+  gameController: {fileID: 2480514924092193047, guid: 599767a56c649b74080c279c8a1eb852, type: 3}
   isPunching: 0
+  maxHealth: 300
+  currentHealth: 0
+  invincibleMaxTime: 2
+  invincibleCurrentTimer: 0
 --- !u!61 &7753868313382654804
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -276,7 +281,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3, y: 3}
-    newSize: {x: 21, y: 6}
+    newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
