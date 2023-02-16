@@ -1,146 +1,202 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
+using System.Collections.Generic;
+
+
 public class ChargingEnemy : Enemy
 {
+
     public List<GameObject> Waypoints = new List<GameObject>();
-    private int currentWaypointIndex;
+    public GameObject firePrefab;
 
-    [Header("Pathfinding")]
-    public Transform target;
-    public float activateDistance = 50f;
-    public float pathUpdateSeconds = 0.25f;
+    private float gravity = -64f;
+    public float runSpeed = 10f;
+    private float groundDamping = 28f;
+    private float inAirDamping = 8f;
 
-    [Header("Physics")]
-    public float speed = 20f;
-    public float nextWaypointDistance = 1f;
-    public float jumpNodeHeightRequirement = 0.8f;
-    public float jumpModifier = 0.3f;
-    public float jumpCheckOffset = 0.1f;
-    public float chargeSpeed = 40f;
+    [HideInInspector]
+    private float normalizedHorizontalSpeed = 0;
 
-    public float gravity = -64f;
-
-    [Header("Custom Behavior")]
-    public bool followEnabled = true;
-    public bool jumpEnabled = true;
-    public bool directionLookEnabled = true;
-
-    public GameObject gameController;
-
-    private Path path;
-    private int currentWaypoint = 0;
-    RaycastHit2D isGrounded;
-    Seeker seeker;
-    //Rigidbody2D rb;
     private PlayerPhysics _controller;
+    private BoxCollider2D _collider;
     private Vector3 _velocity;
 
-    public void Start()
+    private int currentWaypointIndex;
+
+    private float time = 0.0f;
+    private float chargeTime = 0.0f;
+    public float chargeDuration = 3f;
+    public float interpolationPeriod = 3f;
+    private bool nearAttack = false;
+    public float hitStun = 0f;
+    
+    public float chargeRange = 10f;
+    public float cahrgeSpeed = 20f;
+    private GameObject player;
+
+    private bool isCharging = false;
+
+    private bool hasDirection = false;
+
+    private Vector3 direction;
+
+    void Awake()
     {
-        seeker = GetComponent<Seeker>();
         _controller = GetComponent<PlayerPhysics>();
+        _collider = GetComponent<BoxCollider2D>();
+        player = GameObject.Find("Player");
 
-        InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
-
-        gameController = GameObject.Find("Game Controller");
+        currentWaypointIndex = 0;
     }
 
-    private void FixedUpdate()
+    void Update()
     {
-        target = gameController.GetComponent<GameController>().player.transform;
-
-        if (TargetInDistance() && followEnabled)
-        {
-            PathFollow();
-        }
-    }
-
-    private void UpdatePath()
-    {
-        if (followEnabled && TargetInDistance() && seeker.IsDone())
-        {
-            //seeker.StartPath(rb.position, target.position, OnPathComplete);
-            seeker.StartPath(transform.position, target.position, OnPathComplete);
-        }
-    }
-
-    private void PathFollow()
-    {
-        if (path == null)
-        {
-            return;
-        }
-
-        // Reached end of path
-        if (currentWaypoint >= path.vectorPath.Count)
-        {
-            return;
-        }
-
-        // See if colliding with anything
-        Vector3 startOffset = transform.position - new Vector3(0f, GetComponent<Collider2D>().bounds.extents.y + jumpCheckOffset);
-        //isGrounded = Physics2D.Raycast(startOffset, -Vector3.up, 0.05f);
-        
-        // Direction Calculation
-        Vector3 direction = ((Vector3)path.vectorPath[currentWaypoint] - transform.position).normalized;
-        //Debug.Log("Direction: " + direction);
-        _velocity = direction * speed;
-
-        // Jump
-        /*
-        if (jumpEnabled && isGrounded)
-        {
-            if (direction.y > jumpNodeHeightRequirement)
-            {
-                rb.AddForce(Vector2.up * speed * jumpModifier);
+        //If in range, find the direction
+        if(InRange(player, this.gameObject, chargeRange) && chargeTime >= chargeDuration){
+            Debug.Log("Első rész");
+            if(hasDirection == false){
+                direction = player.transform.position - this.gameObject.transform.position;
+                hasDirection = true;
             }
+
+            //if (Waypoints[currentWaypointIndex].transform.position.x > this.transform.position.x)
+            if (direction.x > this.transform.position.x)
+                {
+                    normalizedHorizontalSpeed = 1;
+                    if (transform.localScale.x < 0f)
+                    {
+                        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                    }
+                }
+
+                else if (direction.x < this.transform.position.x)
+                {
+                    normalizedHorizontalSpeed = -1;
+                    if (transform.localScale.x > 0f)
+                    {
+                        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                    }
+                }
+
+            chargeTime = 0f;
+            isCharging = true;
+
+            var smoothedMovementFactor = _controller.isGrounded ? groundDamping : inAirDamping;
+            _velocity.x = Mathf.Lerp(_velocity.x, normalizedHorizontalSpeed * cahrgeSpeed, Time.deltaTime * smoothedMovementFactor);
+            _velocity.y += gravity * Time.deltaTime;
+
+            _controller.move(_velocity * Time.deltaTime);
+            _velocity = _controller.velocity;
         }
-        */
 
-        // Movement
-        //rb.AddForce(force);
+        //Keep on charging
+        else if(isCharging == true){
+            Debug.Log("Második rész");
 
-        _velocity.x = Mathf.Lerp(_velocity.x,speed, Time.deltaTime);
-        _velocity.y += gravity * Time.deltaTime;
-        _controller.move(_velocity * Time.deltaTime);
-        _velocity = _controller.velocity;
+            var smoothedMovementFactor = _controller.isGrounded ? groundDamping : inAirDamping;
+            _velocity.x = Mathf.Lerp(_velocity.x, normalizedHorizontalSpeed * cahrgeSpeed, Time.deltaTime * smoothedMovementFactor);
+            _velocity.y += gravity * Time.deltaTime;
 
-        // Next Waypoint
-        float distance = Vector2.Distance(transform.position, path.vectorPath[currentWaypoint]);
-        if (distance < nextWaypointDistance)
-        {
-            currentWaypoint++;
+            _controller.move(_velocity * Time.deltaTime);
+            _velocity = _controller.velocity;
         }
 
-        // Direction Graphics Handling
-        /*
-        if (directionLookEnabled)
-        {
-            if (rb.velocity.x > 0.05f)
+        //If not charging
+        else{
+            
+            Debug.Log("Harmadik rész");
+
+            if (Mathf.Abs(this.transform.position.x - Waypoints[currentWaypointIndex].transform.position.x) < 0.3f)
             {
-                transform.localScale = new Vector3(-1f * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
+                if (currentWaypointIndex == 0)
+                {
+                    currentWaypointIndex = 1;
+                }
+                else
+                {
+                    currentWaypointIndex = 0;
+                }
             }
-            else if (rb.velocity.x < -0.05f)
+
+            if (hitStun > 0f)
             {
-                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                hitStun -= Time.deltaTime;
+                normalizedHorizontalSpeed = 0f;
             }
+            else
+            {
+                if (Waypoints[currentWaypointIndex].transform.position.x > this.transform.position.x)
+                {
+                    normalizedHorizontalSpeed = 1;
+                    if (transform.localScale.x < 0f)
+                    {
+                        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                    }
+                }
+
+                else if (Waypoints[currentWaypointIndex].transform.position.x < this.transform.position.x)
+                {
+                    normalizedHorizontalSpeed = -1;
+                    if (transform.localScale.x > 0f)
+                    {
+                        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                    }
+                }
+            }
+
+            var smoothedMovementFactor = _controller.isGrounded ? groundDamping : inAirDamping;
+            _velocity.x = Mathf.Lerp(_velocity.x, normalizedHorizontalSpeed * runSpeed, Time.deltaTime * smoothedMovementFactor);
+            _velocity.y += gravity * Time.deltaTime;
+
+            if (Mathf.Abs(time - interpolationPeriod) < 0.4f && !nearAttack)
+            {
+                nearAttack = true;
+            }
+            else
+            {
+                nearAttack = false;
+            }
+
+            if (nearAttack)
+            {
+                _velocity = Vector3.zero;
+            }
+
+            _controller.move(_velocity * Time.deltaTime);
+            _velocity = _controller.velocity;
+
+            time += Time.deltaTime;
+
         }
-        */
+
+        if(chargeTime <= chargeDuration){
+            chargeTime += Time.deltaTime;
+        }
+        else{
+            isCharging = false;
+            hasDirection = false;
+        }
     }
 
-    private bool TargetInDistance()
+    public override void GetHit(Vector3 from, float force)
     {
-        return Vector2.Distance(transform.position, target.transform.position) < activateDistance;
+        base.GetHit(from, force);
+
+        float sign = Mathf.Sign(transform.position.x - from.x);
+        _velocity.y = 12f;
+        _velocity.x = sign * 20f;
+        hitStun = 0.5f;
     }
 
-    private void OnPathComplete(Path p)
+    public bool InRange(GameObject gameObject1, GameObject gameObject2, float range)
     {
-        if (!p.error)
+        if (Mathf.Abs(gameObject1.transform.position.x - gameObject2.transform.position.x) < range && Mathf.Abs(gameObject1.transform.position.y - gameObject2.transform.position.y) < range)
         {
-            path = p;
-            currentWaypoint = 0;
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }
