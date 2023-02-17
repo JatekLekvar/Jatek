@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Scenes/other/MainMenu.unity
     guid: aa99ce8f1ac731c4681ddbb6e08cc9bd
   - enabled: 1
-    path: Assets/Scenes/jungte.unity
+    path: Assets/Scenes/jungle/jungle.unity
     guid: 8814d062defdf465c99d236dbdb1f9b9
   - enabled: 1
-    path: Assets/Scenes/World2.unity
+    path: Assets/Scenes/other/World2.unity
     guid: e49d59bc74b3e1b4392b20fcf96189a1
   m_configObjects: {}
