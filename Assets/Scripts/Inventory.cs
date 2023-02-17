@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,8 +5,7 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private Image inGameMenuImage;
-    [SerializeField] private GameObject inventory;
-    [SerializeField] private GameObject replicatorInventory;
+    [SerializeField] private GameObject abilityPanel;
     [SerializeField] private HealthBarController healthBarController;
     [SerializeField] private GameObject replicator;
     //[SerializeField] private GameObject player;
@@ -20,7 +18,7 @@ public class Inventory : MonoBehaviour
         if (healthBarController.currentHealth <= 0f)
         {
             Time.timeScale = 0;
-            inventory.gameObject.SetActive(false);
+            abilityPanel.SetActive(false);
             healthBarController.gameOverScreen.gameObject.SetActive(true);
         }
 
@@ -31,22 +29,13 @@ public class Inventory : MonoBehaviour
 
         if (Input.GetKeyDown("e") && Time.timeScale == 1 && InRange(replicator, gameController.player))
         {
-            if (inventory.activeSelf == true)
-            {
-                inventory.gameObject.SetActive(false);
-                replicatorInventory.gameObject.SetActive(false);
-            }
-            else
-            {
-                inventory.gameObject.SetActive(true);
-                replicatorInventory.gameObject.SetActive(true);
-            }
+            abilityPanel.SetActive(!abilityPanel.activeSelf);
         }
 
         if (!InRange(replicator, gameController.player))
         {
-            inventory.gameObject.SetActive(false);
-            replicatorInventory.gameObject.SetActive(false);
+            abilityPanel.SetActive(false);
+            abilityPanel.SetActive(false);
         }
     }
 
