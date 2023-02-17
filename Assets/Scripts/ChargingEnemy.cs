@@ -15,6 +15,7 @@ public class ChargingEnemy : Enemy
     private PlayerPhysics _controller;
     private BoxCollider2D _collider;
     private Vector3 _velocity;
+    private GameController gameController;
 
     private float chargeTime = 0.0f;
     public float chargeDuration = 3f;
@@ -43,7 +44,8 @@ public class ChargingEnemy : Enemy
     {
         _controller = GetComponent<PlayerPhysics>();
         _collider = GetComponent<BoxCollider2D>();
-        player = GameObject.Find("Player");
+        gameController = GameObject.Find("Game Controller").GetComponent<GameController>();
+
 
         tmpRunSpeed = runSpeed;
         stopTime = stopMaxTime;
@@ -53,6 +55,8 @@ public class ChargingEnemy : Enemy
 
     void Update()
     {
+        player = gameController.player;
+
         //If in range, find the direction
         if(InRange(player, this.gameObject, chargeRange) && chargeTime >= chargeDuration && stopTime >= stopMaxTime){
             //Debug.Log("Első rész");

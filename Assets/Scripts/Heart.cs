@@ -24,7 +24,7 @@ public class Heart : MonoBehaviour
         renderer = GetComponent<Image>();
     }
 
-    void SetFullness(HealthFullness fullness)
+    public void SetFullness(HealthFullness fullness)
     {
         switch (fullness)
         {
@@ -50,14 +50,14 @@ public class Heart : MonoBehaviour
 
             case HealthFullness.ThreeQuarters:
                 {
-                    renderer.enabled = false;
+                    renderer.enabled = true;
                     renderer.sprite = threeQuarters;
                 }
                 break;
 
             case HealthFullness.Full:
                 {
-                    renderer.enabled = false;
+                    renderer.enabled = true;
                     renderer.sprite = full;
                 }
                 break;

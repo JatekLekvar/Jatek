@@ -6,6 +6,7 @@ public class EnemyFire : MonoBehaviour
     public float verticalDirection;
     float life = 5f;
 
+    public float damageAmount = 25f;
 
     void Update()
     {
@@ -23,7 +24,7 @@ public class EnemyFire : MonoBehaviour
         PlayerLogic playerLogic = collider.gameObject.GetComponent<PlayerLogic>();
         if (playerLogic != null)
         {
-            playerLogic.GetHit(transform.position, 100f);
+            playerLogic.GetHit(transform.position, damageAmount);
             Destroy(gameObject);
         }
     }

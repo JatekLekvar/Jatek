@@ -259,7 +259,7 @@ MonoBehaviour:
   firePrefab: {fileID: 2524954543146020264, guid: 07754b5ff20db8449a046e5b872676d0, type: 3}
   gameController: {fileID: 2480514924092193047, guid: 599767a56c649b74080c279c8a1eb852, type: 3}
   isPunching: 0
-  maxHealth: 300
+  maxHealth: 100
   currentHealth: 0
   invincibleMaxTime: 2
   invincibleCurrentTimer: 0

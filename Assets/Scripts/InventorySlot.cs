@@ -20,6 +20,7 @@ public class InventorySlot : MonoBehaviour
         }
     }
     public void UpdateImage(){
+        image.gameObject.SetActive(true);
         image.sprite = abilityObj.GetComponent<SpriteRenderer>().sprite;
     }
 
@@ -38,6 +39,7 @@ public class InventorySlot : MonoBehaviour
 
         this.abilityObj = null;
         image.sprite = null;
+        image.gameObject.SetActive(false);
     }
 
     public string GetAbility(){
