@@ -1,32 +1,24 @@
 using UnityEngine;
-using System.Collections.Generic;
-
 
 public class ChargingEnemy : Enemy
 {
-
-    public List<GameObject> Waypoints = new List<GameObject>();
     public GameObject firePrefab;
-
     private float gravity = -64f;
+    private float tmpRunSpeed;
     public float runSpeed = 10f;
     private float groundDamping = 28f;
     private float inAirDamping = 8f;
 
     [HideInInspector]
-    private float normalizedHorizontalSpeed = 0;
+    private float normalizedHorizontalSpeed = 1;
 
     private PlayerPhysics _controller;
     private BoxCollider2D _collider;
     private Vector3 _velocity;
 
-    private int currentWaypointIndex;
-
-    private float time = 0.0f;
     private float chargeTime = 0.0f;
     public float chargeDuration = 3f;
     public float interpolationPeriod = 3f;
-    private bool nearAttack = false;
     public float hitStun = 0f;
     
     public float chargeRange = 10f;
@@ -34,31 +26,41 @@ public class ChargingEnemy : Enemy
     private GameObject player;
 
     private bool isCharging = false;
-
     private bool hasDirection = false;
 
     private Vector3 direction;
 
+    public float movementMaxTime;
+    private float movementTimer;
+
+    public float restMaxTime;
+    private float restingTime;
+    public float stopMaxTime;
+    private float stopTime;
+
+    private bool shouldFlip = false;
     void Awake()
     {
         _controller = GetComponent<PlayerPhysics>();
         _collider = GetComponent<BoxCollider2D>();
         player = GameObject.Find("Player");
 
-        currentWaypointIndex = 0;
+        tmpRunSpeed = runSpeed;
+        stopTime = stopMaxTime;
+        restingTime = restMaxTime;
+        chargeTime = chargeDuration;
     }
 
     void Update()
     {
         //If in range, find the direction
-        if(InRange(player, this.gameObject, chargeRange) && chargeTime >= chargeDuration){
-            Debug.Log("Első rész");
+        if(InRange(player, this.gameObject, chargeRange) && chargeTime >= chargeDuration && stopTime >= stopMaxTime){
+            //Debug.Log("Első rész");
             if(hasDirection == false){
                 direction = player.transform.position - this.gameObject.transform.position;
                 hasDirection = true;
             }
 
-            //if (Waypoints[currentWaypointIndex].transform.position.x > this.transform.position.x)
             if (direction.x > this.transform.position.x)
                 {
                     normalizedHorizontalSpeed = 1;
@@ -89,8 +91,8 @@ public class ChargingEnemy : Enemy
         }
 
         //Keep on charging
-        else if(isCharging == true){
-            Debug.Log("Második rész");
+        else if(isCharging == true && stopTime >= stopMaxTime){
+           //Debug.Log("Második rész");
 
             var smoothedMovementFactor = _controller.isGrounded ? groundDamping : inAirDamping;
             _velocity.x = Mathf.Lerp(_velocity.x, normalizedHorizontalSpeed * cahrgeSpeed, Time.deltaTime * smoothedMovementFactor);
@@ -101,21 +103,15 @@ public class ChargingEnemy : Enemy
         }
 
         //If not charging
-        else{
+        else if(stopTime >= stopMaxTime){
             
-            Debug.Log("Harmadik rész");
+            //Debug.Log("Harmadik rész");
 
-            if (Mathf.Abs(this.transform.position.x - Waypoints[currentWaypointIndex].transform.position.x) < 0.3f)
+            if (movementTimer >= movementMaxTime)
             {
-
-                if (currentWaypointIndex == 0)
-                {
-                    currentWaypointIndex = 1;
-                }
-                else
-                {
-                    currentWaypointIndex = 0;
-                }
+                //normalizedHorizontalSpeed = normalizedHorizontalSpeed * -1;
+                movementTimer = 0f;
+                restingTime = 0f;
             }
 
             if (hitStun > 0f)
@@ -125,57 +121,56 @@ public class ChargingEnemy : Enemy
             }
             else
             {
-                if (Waypoints[currentWaypointIndex].transform.position.x > this.transform.position.x)
-                {
-                    normalizedHorizontalSpeed = 1;
-                    if (transform.localScale.x < 0f)
-                    {
-                        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-                    }
-                }
-
-                else if (Waypoints[currentWaypointIndex].transform.position.x < this.transform.position.x)
-                {
-                    normalizedHorizontalSpeed = -1;
-                    if (transform.localScale.x > 0f)
-                    {
-                        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-                    }
-                }
+                transform.localScale = new Vector3(normalizedHorizontalSpeed, transform.localScale.y, transform.localScale.z);
             }
 
             var smoothedMovementFactor = _controller.isGrounded ? groundDamping : inAirDamping;
             _velocity.x = Mathf.Lerp(_velocity.x, normalizedHorizontalSpeed * runSpeed, Time.deltaTime * smoothedMovementFactor);
             _velocity.y += gravity * Time.deltaTime;
 
-            if (Mathf.Abs(time - interpolationPeriod) < 0.4f && !nearAttack)
-            {
-                nearAttack = true;
-            }
-            else
-            {
-                nearAttack = false;
-            }
-
-            if (nearAttack)
-            {
-                _velocity = Vector3.zero;
-            }
-
             _controller.move(_velocity * Time.deltaTime);
             _velocity = _controller.velocity;
 
-            time += Time.deltaTime;
-
         }
 
+        //Increase time until chargeDuration is reached
         if(chargeTime <= chargeDuration){
             chargeTime += Time.deltaTime;
         }
-        else{
+        //When done charging
+        else if (isCharging){
             isCharging = false;
             hasDirection = false;
+            stopTime = 0f;
+            //Debug.Log("I'm stopping");
         }
+
+        if(stopTime <= stopMaxTime){
+            stopTime += Time.deltaTime;
+            //Debug.Log("Being stopped");
+        }
+        else{
+            if(restingTime <= restMaxTime){
+                restingTime += Time.deltaTime;
+                movementTimer = 0f;
+                runSpeed = 0f;
+                shouldFlip = true;
+                //Debug.Log("Resting...");
+            }
+            else if (shouldFlip){
+                if(!isCharging){
+                    normalizedHorizontalSpeed = normalizedHorizontalSpeed * -1;
+                }
+                shouldFlip = false;
+            }
+            else if(movementTimer <= movementMaxTime){
+                runSpeed = tmpRunSpeed;
+                movementTimer += Time.deltaTime;
+            }
+            
+        }
+        
+
     }
 
     public override void GetHit(Vector3 from, float force)
@@ -199,4 +194,5 @@ public class ChargingEnemy : Enemy
             return false;
         }
     }
+
 }
