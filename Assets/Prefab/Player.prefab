@@ -172,7 +172,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 373729701, guid: e91227d8b2d50ca429fc7ac3bf04cffa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6c9289ded4c6fc64a97214f731891e5b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -276,18 +276,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.5}
+  m_Offset: {x: 0, y: -0.78}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3, y: 3}
+    oldSize: {x: 3.125, y: 4.0625}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 2, y: 2.5}
   m_EdgeRadius: 0
 --- !u!50 &7753868313382654811
 Rigidbody2D:
@@ -322,18 +322,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feaccdf8d71d4f44eb5ddb81f79967ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 7753868313382654801}
+  spriteRenderer: {fileID: 0}
   animations:
   - name: Idle
-    fps: 5
+    fps: 12
     frames:
-    - {fileID: 1575052868, guid: e91227d8b2d50ca429fc7ac3bf04cffa, type: 3}
+    - {fileID: 21300000, guid: 6c9289ded4c6fc64a97214f731891e5b, type: 3}
+    - {fileID: 21300000, guid: 9fd9a7479d9040a4bb83d0e8f6629563, type: 3}
+    - {fileID: 21300000, guid: c55b25324807a7142ba90e7759c2ad84, type: 3}
+    - {fileID: 21300000, guid: 87d285e14868d2741a1446fbc6f2829a, type: 3}
+    - {fileID: 21300000, guid: 6e46c9fd8cedbc047bc1e27c8c14543b, type: 3}
+    - {fileID: 21300000, guid: 1933971a6ca802d48bc634e5dd2bac3f, type: 3}
+    - {fileID: 21300000, guid: 2aae4e981eb41054aa651ca42a775388, type: 3}
     triggers: []
   - name: Walk
-    fps: 5
+    fps: 24
     frames:
-    - {fileID: 1575052868, guid: e91227d8b2d50ca429fc7ac3bf04cffa, type: 3}
-    - {fileID: -1445428537, guid: e91227d8b2d50ca429fc7ac3bf04cffa, type: 3}
+    - {fileID: 21300000, guid: ccdd3d13fa6885b4a8f34b742a7d6250, type: 3}
+    - {fileID: 21300000, guid: cf41952b578982a43b1e2c0a749dec45, type: 3}
+    - {fileID: 21300000, guid: d61129c4600850246a6f023e660a772e, type: 3}
+    - {fileID: 21300000, guid: f14042763db8fd74aa70c64180ccb08a, type: 3}
+    - {fileID: 21300000, guid: 7f9e560746e05464493b278c8c05cabb, type: 3}
+    - {fileID: 21300000, guid: f8a63399f89e5484087bcbf76cc597f6, type: 3}
+    - {fileID: 21300000, guid: 436211ffee6c32447b170ee21d1bc0d4, type: 3}
+    - {fileID: 21300000, guid: 9bd886f9eb574c943b88ff9da4340e5e, type: 3}
+    - {fileID: 21300000, guid: f3dba85b73c177940b732b9ea446b60a, type: 3}
+    - {fileID: 21300000, guid: 26c480c0452b4d24a85257dfcdbe924e, type: 3}
+    - {fileID: 21300000, guid: 6b3cf61e9cde974489300b958cbea9d7, type: 3}
+    - {fileID: 21300000, guid: 4c7fab2971a44634c8e61088cd887259, type: 3}
+    - {fileID: 21300000, guid: d843700857c0ba9419ec5eea52a9f7e4, type: 3}
+    - {fileID: 21300000, guid: c618102306c468942b05d68db726b686, type: 3}
+    - {fileID: 21300000, guid: 12781da5c6228244086f80c73ef4fb00, type: 3}
+    - {fileID: 21300000, guid: 14b68fc08b8362a4dbefcc7c07cb4169, type: 3}
+    - {fileID: 21300000, guid: 0cf350c96ba7ce34590ff9972e780fce, type: 3}
+    - {fileID: 21300000, guid: 5c8db504ebaf40b4282cd2a67ab548f5, type: 3}
+    - {fileID: 21300000, guid: 36364f1ea1dc60b49bf2dea9fc2036f9, type: 3}
+    - {fileID: 21300000, guid: 81fbb30154745c249b35c9b95f74af04, type: 3}
+    - {fileID: 21300000, guid: 7303c781ab8e4aa42a0ec89254018b83, type: 3}
+    - {fileID: 21300000, guid: f529d90984b3d4c46b5d544f341cef6a, type: 3}
+    - {fileID: 21300000, guid: fb5bafc5d21424543a0fe0476d5e1e96, type: 3}
+    - {fileID: 21300000, guid: c23ce7b4829056e43b72b56c627ccd16, type: 3}
     triggers: []
   - name: Crouch
     fps: 5
@@ -341,14 +369,35 @@ MonoBehaviour:
     - {fileID: -1413213349, guid: e91227d8b2d50ca429fc7ac3bf04cffa, type: 3}
     triggers: []
   - name: Jump
-    fps: 5
+    fps: 24
     frames:
-    - {fileID: 1373310390, guid: e91227d8b2d50ca429fc7ac3bf04cffa, type: 3}
+    - {fileID: 21300000, guid: 804bfe42c33769a458f6728374a0ba71, type: 3}
+    - {fileID: 21300000, guid: 38369b0e3d6d5ad4b9c843e1f03c6c53, type: 3}
+    - {fileID: 21300000, guid: b06104ebb747e4a41b1e2eacf2411e7c, type: 3}
+    - {fileID: 21300000, guid: a4444050b67e1c14a9c52ac21c9a4bbc, type: 3}
+    - {fileID: 21300000, guid: 3ca065fcedf53104380536e2554211fb, type: 3}
+    - {fileID: 21300000, guid: 170e376cf5dbad24e8dfef4e89c98a14, type: 3}
+    - {fileID: 21300000, guid: 7b88a16d3fa775f4384a3035b73b01d1, type: 3}
+    - {fileID: 21300000, guid: a0a5a6c185eb6b44e8fb463609f0c1f4, type: 3}
+    - {fileID: 21300000, guid: 6b06d10bb749b164e83fcdea3ab33bfb, type: 3}
+    - {fileID: 21300000, guid: a8ef8f245d87fa84da38a1bb4145af87, type: 3}
     triggers: []
   - name: Punch
-    fps: 5
+    fps: 24
     frames:
-    - {fileID: 373729701, guid: e91227d8b2d50ca429fc7ac3bf04cffa, type: 3}
+    - {fileID: 21300000, guid: ab53119447718f54abc7c37adbedc1cc, type: 3}
+    - {fileID: 21300000, guid: 20490afe87b09da4eb1e94b75bf1ec2e, type: 3}
+    - {fileID: 21300000, guid: 46afe40fa3f587d4f90175aacdb106c5, type: 3}
+    - {fileID: 21300000, guid: 5915513089ffb4543961f36cb4c25ed9, type: 3}
+    - {fileID: 21300000, guid: 36f7ade1dd6244c4bbe399de5c466fcf, type: 3}
+    - {fileID: 21300000, guid: f8192a2f662d23e49ba985784f83ca56, type: 3}
+    - {fileID: 21300000, guid: 3f6e00fc29237094891f107799e95d7b, type: 3}
+    - {fileID: 21300000, guid: 7d049f33cbd82d841a132221d1766e4c, type: 3}
+    - {fileID: 21300000, guid: a31f9d04e55365343a61e110f872f610, type: 3}
+    - {fileID: 21300000, guid: 8f33edf176d552044ba711aec0959984, type: 3}
+    - {fileID: 21300000, guid: 508e74f5fe9c10840bca51114f1b32d6, type: 3}
+    - {fileID: 21300000, guid: faf0183d44ad2e74ab6eab134e3f2b9e, type: 3}
+    - {fileID: 21300000, guid: 5ecf7741274f0e8438d0a04296b52868, type: 3}
     triggers: []
   - name: Scratch
     fps: 5
