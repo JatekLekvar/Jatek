@@ -18,6 +18,7 @@ public class BasicEnemy : Enemy
 
     private PlayerPhysics _controller;
     private BoxCollider2D _collider;
+    private SpriteAnimator _animator;
     private Vector3 _velocity;
 
     private int currentWaypointIndex;
@@ -31,6 +32,7 @@ public class BasicEnemy : Enemy
     {
         _controller = GetComponent<PlayerPhysics>();
         _collider = GetComponent<BoxCollider2D>();
+        _animator = GetComponent<SpriteAnimator>();
 
         currentWaypointIndex = 0;
     }

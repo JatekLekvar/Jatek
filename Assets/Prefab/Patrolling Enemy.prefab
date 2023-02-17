@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 154976382521950449}
   - component: {fileID: 154976382521950462}
   - component: {fileID: 154976382521950461}
+  - component: {fileID: 3446178274680453461}
   m_Layer: 9
   m_Name: Enemy 1
   m_TagString: Untagged
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 34ff3ee9d52f0bd44b897a6bab1004e8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6c8732ac06d4a3e4cb5df8e701ccc6c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -165,14 +166,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    oldSize: {x: 1.25, y: 1.25}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &154976382521950462
 Rigidbody2D:
@@ -215,6 +216,35 @@ MonoBehaviour:
   firePrefab: {fileID: 2524954543146020264, guid: 0cb9d07b7fe0fc845b9c467bc49d1c8d, type: 3}
   runSpeed: 5
   interpolationPeriod: 3
+--- !u!114 &3446178274680453461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154976382521950463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feaccdf8d71d4f44eb5ddb81f79967ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 154976382521950452}
+  animations:
+  - name: Walk
+    fps: 24
+    frames:
+    - {fileID: 21300000, guid: 6c8732ac06d4a3e4cb5df8e701ccc6c6, type: 3}
+    - {fileID: 21300000, guid: 5dcfe7111faaf0e4ebf05d658cdb3b42, type: 3}
+    - {fileID: 21300000, guid: 41bbb502be22ecd4ba604d66dfe58614, type: 3}
+    - {fileID: 21300000, guid: 7cc28bc04dff25245bf6c7bbc7ec91d9, type: 3}
+    - {fileID: 21300000, guid: 80db268b3ff48a0438e3d40e7142752e, type: 3}
+    - {fileID: 21300000, guid: c21f00a167650084eaa44da00ed85310, type: 3}
+    - {fileID: 21300000, guid: d58d5f15cf0312f48893b5ba7b0f0a4d, type: 3}
+    - {fileID: 21300000, guid: 6a998ba73d6817c42820ec5acc8cef70, type: 3}
+    - {fileID: 21300000, guid: ef00fa9db1908f640b0ed451e9b848d0, type: 3}
+    - {fileID: 21300000, guid: 4dc2965837dbb6840bfbd478f1b78355, type: 3}
+    triggers: []
+  playAnimationOnStart: Walk
 --- !u!1 &3605655311283036163
 GameObject:
   m_ObjectHideFlags: 0

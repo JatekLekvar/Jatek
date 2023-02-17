@@ -24,7 +24,7 @@ public class PlayerLogic : MonoBehaviour
     private float inAirDamping = 8f;
     private float jumpHeight = 12f;
     private float jumpLength = 0.2f;
-    private float attackLength = 0.2f;
+    private float attackLength = 0.5f;
 
     public float maxHealth = 300f;
     public float currentHealth;
@@ -148,10 +148,10 @@ public class PlayerLogic : MonoBehaviour
 
         if (crouch)
         {
-            state = State.Crouch;
+            // state = State.Crouch;
 
-            _collider.offset = new Vector2(0f, -1f);
-            _collider.size = new Vector2(2f, 1f);
+            // _collider.offset = new Vector2(0f, -1f);
+            // _collider.size = new Vector2(2f, 1f);
         }
         else
         {
@@ -168,8 +168,8 @@ public class PlayerLogic : MonoBehaviour
                 }
             }
 
-            _collider.offset = new Vector2(0f, -0.5f);
-            _collider.size = new Vector2(2f, 2f);
+            _collider.offset = new Vector2(0f, -0.78f);
+            _collider.size = new Vector2(2f, 2.5f);
         }
 
         if (_attackTimer > 0f)
