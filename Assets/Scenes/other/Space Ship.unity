@@ -383,8 +383,12 @@ PrefabInstance:
       value: Ability (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3568988380757746900, guid: 3b7ed8c62cd01f84bab0a2c52c55fdb0, type: 3}
+      propertyPath: text
+      value: Gives 1 extra heart.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3568988380757746900, guid: 3b7ed8c62cd01f84bab0a2c52c55fdb0, type: 3}
       propertyPath: identifier
-      value: speed
+      value: health
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b7ed8c62cd01f84bab0a2c52c55fdb0, type: 3}
@@ -442,6 +446,10 @@ PrefabInstance:
     - target: {fileID: 3568988380757746889, guid: 3b7ed8c62cd01f84bab0a2c52c55fdb0, type: 3}
       propertyPath: m_Name
       value: Ability
+      objectReference: {fileID: 0}
+    - target: {fileID: 3568988380757746900, guid: 3b7ed8c62cd01f84bab0a2c52c55fdb0, type: 3}
+      propertyPath: text
+      value: Doubles the movement speed.
       objectReference: {fileID: 0}
     - target: {fileID: 3568988380757746900, guid: 3b7ed8c62cd01f84bab0a2c52c55fdb0, type: 3}
       propertyPath: identifier

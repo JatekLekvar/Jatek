@@ -6,20 +6,21 @@ using TMPro;
 public class DynamicUI : MonoBehaviour
 {
     [SerializeField] private RectTransform canvasRectTransform;
-    private RectTransform backgroundRectTransform;
-    private TextMeshProUGUI textMeshPro;
-    private RectTransform rectTransform;
+    [SerializeField] private RectTransform backgroundRectTransform;
+    [SerializeField] private TextMeshProUGUI textMeshPro;
+    [SerializeField] private RectTransform rectTransform;
 
     void Awake(){
         backgroundRectTransform = transform.Find("background").GetComponent<RectTransform>();
         textMeshPro = transform.Find("text").GetComponent<TextMeshProUGUI>();
         rectTransform = transform.GetComponent<RectTransform>();
 
-        SetText("Testing...");
+        //SetText("Testing...");
+        this.gameObject.SetActive(false);
     }
 
 
-    private void SetText(string tooltipText){
+    public void SetText(string tooltipText){
         textMeshPro.SetText(tooltipText);
         textMeshPro.ForceMeshUpdate();
 
@@ -30,7 +31,8 @@ public class DynamicUI : MonoBehaviour
     }
 
     void Update(){
-        rectTransform.anchoredPosition = Input.mousePosition / canvasRectTransform.localScale.x;
+        rectTransform.anchoredPosition = (Input.mousePosition / canvasRectTransform.localScale.x) + new Vector3(5,5,5);
+        
     }
 
 }

@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class InventorySlot : MonoBehaviour
+public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject abilityObj;
     public GameObject gameController;
@@ -47,13 +48,17 @@ public class InventorySlot : MonoBehaviour
         return (abilityObj.GetComponent<Ability>().identifier);
     }
 
-    public void OnMouseEnter(){
-        Debug.Log("On Mouse Enter");
-        tooltipUI.SetActive(true);
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if(abilityObj != null){
+            tooltipUI.SetActive(true);
+            tooltipUI.GetComponent<DynamicUI>().SetText(abilityObj.GetComponent<Ability>().text);
+        }
     }
 
-    public void OnMouseExit(){
-        tooltipUI.SetActive(true);
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        tooltipUI.SetActive(false);
     }
 
 }
