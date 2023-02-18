@@ -9,9 +9,84 @@ EditorBuildSettings:
     path: Assets/Scenes/other/MainMenu.unity
     guid: aa99ce8f1ac731c4681ddbb6e08cc9bd
   - enabled: 1
+    path: Assets/Scenes/other/lobby.unity
+    guid: 9aac80cdb8ddba8458c7eb8b3ef9e466
+  - enabled: 1
     path: Assets/Scenes/jungle/jungle.unity
     guid: 8814d062defdf465c99d236dbdb1f9b9
   - enabled: 1
-    path: Assets/Scenes/other/World2.unity
-    guid: e49d59bc74b3e1b4392b20fcf96189a1
+    path: Assets/Scenes/jungle/jungle_1.unity
+    guid: 8bf64a115704b2f41b5bb1bacc5ea893
+  - enabled: 1
+    path: Assets/Scenes/jungle/jungle_2.unity
+    guid: 7719bc846f9f353438a882e8f2aad285
+  - enabled: 1
+    path: Assets/Scenes/jungle/jungle_3.unity
+    guid: 881944693ebf0b445925c919a715e75c
+  - enabled: 1
+    path: Assets/Scenes/jungle/jungle_4.unity
+    guid: e8a3ab4c61a222e46be00c482ba6c036
+  - enabled: 1
+    path: Assets/Scenes/ice/ice_1.unity
+    guid: fc0942deccaca564f8fb183e9e060f23
+  - enabled: 1
+    path: Assets/Scenes/ice/ice_2.unity
+    guid: 1c5a74e3cfb7f5f4789b01233c811af6
+  - enabled: 1
+    path: Assets/Scenes/ice/ice_3.unity
+    guid: aefced5d4f194be49b3bbe06ce58affb
+  - enabled: 1
+    path: Assets/Scenes/ice/ice_4.unity
+    guid: b75a3c06050e668409e0193b2406f421
+  - enabled: 1
+    path: Assets/Scenes/ice/ice_5.unity
+    guid: 5fed6cc8da0e0e24cb0ba02bd0d0d298
+  - enabled: 1
+    path: Assets/Scenes/ice/ice_6.unity
+    guid: 9ec0da78f3e301d408e95ba4435d430a
+  - enabled: 1
+    path: Assets/Scenes/ice/ice_7.unity
+    guid: a1da53c7117e99a43973fa781bdddb48
+  - enabled: 1
+    path: Assets/Scenes/vulcanic/vulcanic_1.unity
+    guid: e02efb402772e79469108cd9cac81c2c
+  - enabled: 1
+    path: Assets/Scenes/vulcanic/vulcanic_2.unity
+    guid: fecceaa93663c4e49b3c6ea6b516af8a
+  - enabled: 1
+    path: Assets/Scenes/vulcanic/vulcanic_3.unity
+    guid: d94a7a02f4d693b42811aafdd3696fcf
+  - enabled: 1
+    path: Assets/Scenes/vulcanic/vulcanic_4.unity
+    guid: f8357a086894fc84db994e4054b4ce4a
+  - enabled: 1
+    path: Assets/Scenes/vulcanic/vulcanic_5.unity
+    guid: 77fabec818abd4340ba680e817c7811e
+  - enabled: 1
+    path: Assets/Scenes/vulcanic/vulcanic_6.unity
+    guid: caf115d1e7428204a8f954fc434d487a
+  - enabled: 1
+    path: Assets/Scenes/vulcanic/vulcanic_7.unity
+    guid: cc1e374739090da41beb8e1877a52175
+  - enabled: 1
+    path: Assets/Scenes/vulcanic/vulcanic_8.unity
+    guid: f94741f253804ec4198ed677eb9215cf
+  - enabled: 1
+    path: Assets/Scenes/vulcanic/vulcanic_9.unity
+    guid: bf337960592f358418ec9525e9cdf89b
+  - enabled: 1
+    path: Assets/Scenes/vulcanic/vulcanic_10.unity
+    guid: e51fed77b0d4f7848875010e67512d47
+  - enabled: 1
+    path: Assets/Scenes/vulcanic/vulcanic_11.unity
+    guid: 6ac07685f830fdf4c986eb65defeb5b1
+  - enabled: 1
+    path: Assets/Scenes/vulcanic/vulcanic_12.unity
+    guid: ba3c07d41dbb8164fb3b6c83e02bc225
+  - enabled: 1
+    path: Assets/Scenes/vulcanic/vulcanic_13.unity
+    guid: 66e0827d5c913d14980434b4e0e3dc0f
+  - enabled: 1
+    path: Assets/Scenes/vulcanic/vulcanic_14.unity
+    guid: 2be0976b58dd69b4e8ad6f3c0f739a5e
   m_configObjects: {}
