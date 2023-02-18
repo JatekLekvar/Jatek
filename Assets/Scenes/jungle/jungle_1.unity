@@ -8691,6 +8691,10 @@ PrefabInstance:
       propertyPath: nextScene
       value: lobby
       objectReference: {fileID: 0}
+    - target: {fileID: 2153810436998057442, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
+      propertyPath: nextWorldEnterSide
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4973610176760088504, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
       propertyPath: nextScene
       value: jungle_2

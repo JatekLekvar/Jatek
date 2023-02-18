@@ -13,7 +13,6 @@ public class SpawnPoint : MonoBehaviour
         gameController = GameObject.Find("Game Controller").GetComponent<GameController>();
         if(gameController.nextWorldEnterSide == this.NextWorldEnterSide){
             player.transform.position = this.transform.position;
-            Debug.Log("Player position set.");
         }
     }
 }

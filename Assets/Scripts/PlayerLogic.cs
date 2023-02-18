@@ -129,7 +129,7 @@ public class PlayerLogic : MonoBehaviour
 
         if (_controller.isGrounded && Input.GetKey(KeyCode.W))
         {
-            if(gameControllerScript.spaceShipEntrance != null && InRange(this.gameObject,gameControllerScript.spaceShipEntrance,10f)){
+            if(gameControllerScript.spaceShipEntrance != null && InRange(this.gameObject,gameControllerScript.spaceShipEntrance,5f)){
                 gameControllerScript.nextWorldEnterSide = NextWorldEnterSide.Right;
                 SceneManager.LoadScene("Space Ship");
                 return;

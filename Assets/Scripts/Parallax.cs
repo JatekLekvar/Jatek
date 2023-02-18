@@ -11,7 +11,6 @@ public class Parallax : MonoBehaviour
 
     void Start(){
         spawnPosition = GameObject.Find("Player").transform.position;
-        Debug.Log("spawnPoint coordinates read");
     }
 
     void Update()

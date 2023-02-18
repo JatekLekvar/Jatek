@@ -16118,7 +16118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextScene: jungle_3
-  nextWorldEnterSide: 1
+  nextWorldEnterSide: 2
   gameController: {fileID: 0}
 --- !u!61 &7769557013427805546
 BoxCollider2D:
