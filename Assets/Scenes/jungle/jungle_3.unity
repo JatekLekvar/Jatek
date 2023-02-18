@@ -15876,6 +15876,10 @@ PrefabInstance:
       value: -2.39
       objectReference: {fileID: 0}
     - target: {fileID: 1997645299540042397, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
+      propertyPath: worldEnterSide
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1997645299540042397, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
       propertyPath: NextWorldEnterSide
       value: 2
       objectReference: {fileID: 0}

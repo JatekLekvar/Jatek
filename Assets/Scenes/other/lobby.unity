@@ -131,6 +131,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1530942054}
     m_Modifications:
     - target: {fileID: 6826577195512946456, guid: 6c2895e7b006ab94aba9fe14111a3a30, type: 3}
+      propertyPath: worldEnterSide
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6826577195512946456, guid: 6c2895e7b006ab94aba9fe14111a3a30, type: 3}
       propertyPath: NextWorldEnterSide
       value: 6
       objectReference: {fileID: 0}
@@ -191,6 +195,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1530942054}
     m_Modifications:
+    - target: {fileID: 6826577195512946456, guid: 6c2895e7b006ab94aba9fe14111a3a30, type: 3}
+      propertyPath: worldEnterSide
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6826577195512946456, guid: 6c2895e7b006ab94aba9fe14111a3a30, type: 3}
       propertyPath: NextWorldEnterSide
       value: 4
@@ -426,8 +434,12 @@ PrefabInstance:
       value: 59.08
       objectReference: {fileID: 0}
     - target: {fileID: 1997645299540042397, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
+      propertyPath: worldEnterSide
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1997645299540042397, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
       propertyPath: NextWorldEnterSide
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1997645299540042398, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
       propertyPath: m_Name
@@ -451,7 +463,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4973610176760088504, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
       propertyPath: nextWorldEnterSide
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4973610176760088506, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
       propertyPath: m_LocalScale.y

@@ -9,6 +9,7 @@ public class InventorySlot : MonoBehaviour
     public GameObject gameController;
     public Image image;
     private bool isPlayerInventory;
+    public GameObject tooltipUI;
 
     void Awake(){
         gameController = GameObject.Find("Game Controller");
@@ -25,7 +26,7 @@ public class InventorySlot : MonoBehaviour
     }
 
     public void TransferItem(){
-
+        Debug.Log("transfering");
         if(abilityObj == null){
             return;
         }
@@ -44,6 +45,15 @@ public class InventorySlot : MonoBehaviour
 
     public string GetAbility(){
         return (abilityObj.GetComponent<Ability>().identifier);
+    }
+
+    public void OnMouseEnter(){
+        Debug.Log("On Mouse Enter");
+        tooltipUI.SetActive(true);
+    }
+
+    public void OnMouseExit(){
+        tooltipUI.SetActive(true);
     }
 
 }
