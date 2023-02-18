@@ -17,7 +17,7 @@ public class Heart : MonoBehaviour
     public Sprite threeQuarters;
     public Sprite full;
 
-    new Image renderer;
+    [SerializeField]new Image renderer;
 
     void Start()
     {

@@ -14,7 +14,7 @@ public class HealthBarController : MonoBehaviour
     [SerializeField] private GameController gameController;
     private float tmpHealth;
     bool isSet;
-    private int heartAmount = 1;
+    public int heartAmount = 1;
 
     void Awake(){
         gameController = this.gameObject.GetComponent<GameController>();
@@ -26,6 +26,14 @@ public class HealthBarController : MonoBehaviour
 
         currentHealth = gameController.player.GetComponent<PlayerLogic>().currentHealth;
         maxHealth = gameController.player.GetComponent<PlayerLogic>().maxHealth;
+
+        if(heartAmount == 1){
+            hearts[0].gameObject.SetActive(true);
+            hearts[1].gameObject.SetActive(false);
+        }
+        if(heartAmount == 2){
+            hearts[1].gameObject.SetActive(true);
+        }
 
         /*
         if(currentHealth <= 0f){

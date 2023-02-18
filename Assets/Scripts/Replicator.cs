@@ -53,6 +53,7 @@ public class Replicator : MonoBehaviour
     public void ApplyAllAbilities()
     {
         PlayerLogic playerLogic = nextPlayer.GetComponent<PlayerLogic>();
+        HealthBarController healthBarController = gameController.GetComponent<HealthBarController>();
 
         for (int i = 0; i < abilitiesToApply.Count; i++)
         {
@@ -60,6 +61,11 @@ public class Replicator : MonoBehaviour
             {
                 case "speed":
                     playerLogic.RunSpeed = 20f;
+                    break;
+                case "health":
+                    healthBarController.heartAmount = 2;
+                    playerLogic.maxHealth = 200f;
+                    playerLogic.currentHealth = 200f;
                     break;
                 default:
                     Debug.Log("Nem volt benne semmi");
