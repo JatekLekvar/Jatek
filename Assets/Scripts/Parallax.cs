@@ -7,12 +7,17 @@ public class Parallax : MonoBehaviour
     public Transform foregroundLayer;
     public Transform target;
     public Vector3 spawnPosition;
+    public bool hasForegorund = true;
+
+    void Start(){
+        spawnPosition = GameObject.Find("Player").transform.position;
+        Debug.Log("spawnPoint coordinates read");
+    }
 
     void Update()
     {
         if(target == null){
             target = GameObject.Find("Camera").transform;
-
         }
 
         for (int i = 0; i < backgroundLayers.Count; i++)
@@ -23,10 +28,12 @@ public class Parallax : MonoBehaviour
             backgroundLayers[i].position = position;
         }
 
+        if(hasForegorund){
         {
             Vector3 position = target.position * -0.5f;
             position.z = foregroundLayer.position.z;
             foregroundLayer.position = position;
+        }
         }
     }
 }

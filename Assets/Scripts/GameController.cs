@@ -7,19 +7,26 @@ public class GameController : MonoBehaviour
 {
     public GameObject player;
     public GameObject replicator;
+    public GameObject spaceShipEntrance;
 
     public NextWorldEnterSide nextWorldEnterSide;
 
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        SceneManager.LoadScene("lobby");
+        nextWorldEnterSide = NextWorldEnterSide.Up;
+        SceneManager.LoadScene("Space Ship");
+    }
+
+    void Update(){
+        spaceShipEntrance = GameObject.Find("Space Ship Entrance");
     }
 
     public void RefreshPlayer(){
         player = GameObject.Find("Player");
+        nextWorldEnterSide = NextWorldEnterSide.Up;
+        SceneManager.LoadScene("Space Ship");
         replicator.GetComponent<Replicator>().CreateNewPlayer();
     }
-
 
 }

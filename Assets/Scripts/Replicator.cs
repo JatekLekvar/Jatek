@@ -31,7 +31,8 @@ public class Replicator : MonoBehaviour
 
     public void CreateNewPlayer()
     {
-        nextPlayer = (GameObject)Instantiate(nextPlayerPrefab, transform.position, Quaternion.identity);
+        Vector3 spawnPosition = new Vector3(transform.position.x,transform.position.y + 5,transform.position.z);
+        nextPlayer = (GameObject)Instantiate(nextPlayerPrefab, spawnPosition, Quaternion.identity);
         nextPlayer.name = "Player";
         List<GameObject> inReplicatorInventory = gameController.GetComponent<Inventory>().replicatorSlots;
 

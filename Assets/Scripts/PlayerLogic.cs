@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 enum State
 {
@@ -16,6 +17,7 @@ public class PlayerLogic : MonoBehaviour
     public List<string> heldAbilities = new List<string>();
     public GameObject firePrefab;
     public GameObject gameController;
+    public GameController gameControllerScript;
     public bool isPunching;
 
     private float gravity = -64f;
@@ -67,7 +69,9 @@ public class PlayerLogic : MonoBehaviour
         _animator = GetComponent<SpriteAnimator>();
         _collider = GetComponent<BoxCollider2D>();
         gameController = GameObject.Find("Game Controller");
-        gameController.GetComponent<GameController>().player = this.gameObject;
+        gameControllerScript = gameController.GetComponent<GameController>();
+        gameControllerScript.player = this.gameObject;
+        
 
         currentHealth = maxHealth;
     }
@@ -125,6 +129,11 @@ public class PlayerLogic : MonoBehaviour
 
         if (_controller.isGrounded && Input.GetKey(KeyCode.W))
         {
+            if(gameControllerScript.spaceShipEntrance != null && InRange(this.gameObject,gameControllerScript.spaceShipEntrance,10f)){
+                gameControllerScript.nextWorldEnterSide = NextWorldEnterSide.Right;
+                SceneManager.LoadScene("Space Ship");
+                return;
+            }
             _jumpTimer = JumpLength;
         }
 
@@ -301,6 +310,18 @@ public class PlayerLogic : MonoBehaviour
     {
         gameController.GetComponent<GameController>().RefreshPlayer();
         Destroy(this.gameObject);
+    }
+
+    public bool InRange(GameObject gameObject1, GameObject gameObject2, float range)
+    {
+        if (Mathf.Abs(gameObject1.transform.position.x - gameObject2.transform.position.x) < range && Mathf.Abs(gameObject1.transform.position.y - gameObject2.transform.position.y) < range)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }
