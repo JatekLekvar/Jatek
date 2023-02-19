@@ -45,6 +45,7 @@ public class PlayerLogic : MonoBehaviour
     private float _attackCooldown;
     private State state = State.Idle;
     private bool left;
+    public float damage = 50f;
 
     public float invincibleMaxTime;
     public float invincibleCurrentTimer = 0f;

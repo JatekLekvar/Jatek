@@ -63,6 +63,9 @@ public class Replicator : MonoBehaviour
                 case "speed":
                     playerLogic.RunSpeed = 20f;
                     break;
+                case "dmg":
+                    playerLogic.damage = 150f;
+                    break;
                 case "health":
                     healthBarController.heartAmount = 2;
                     playerLogic.maxHealth = 200f;

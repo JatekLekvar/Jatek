@@ -228,7 +228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4973610177274450624, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4973610177274450624, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
       propertyPath: m_LocalPosition.x
@@ -330,7 +330,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1563528483240608901, guid: 5e9c254b4e054ae4e8d31aec0cdd3ed7, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1563528483240608901, guid: 5e9c254b4e054ae4e8d31aec0cdd3ed7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -376,6 +376,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParallaxICV
       objectReference: {fileID: 0}
+    - target: {fileID: 1563528483240608903, guid: 5e9c254b4e054ae4e8d31aec0cdd3ed7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e9c254b4e054ae4e8d31aec0cdd3ed7, type: 3}
 --- !u!1001 &1335747659
@@ -391,7 +395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8944450376005890070, guid: ad4f52c42c54cc24b82a3da63c590a06, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8944450376005890070, guid: ad4f52c42c54cc24b82a3da63c590a06, type: 3}
       propertyPath: m_LocalPosition.x
@@ -434,8 +438,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8944450376005890071, guid: ad4f52c42c54cc24b82a3da63c590a06, type: 3}
+      propertyPath: maxX
+      value: 590
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944450376005890071, guid: ad4f52c42c54cc24b82a3da63c590a06, type: 3}
       propertyPath: maxY
       value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944450376005890071, guid: ad4f52c42c54cc24b82a3da63c590a06, type: 3}
+      propertyPath: minX
+      value: 382
       objectReference: {fileID: 0}
     - target: {fileID: 8944450376005890071, guid: ad4f52c42c54cc24b82a3da63c590a06, type: 3}
       propertyPath: minY
