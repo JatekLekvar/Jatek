@@ -5,10 +5,14 @@ public class PunchTrigger : MonoBehaviour
     PlayerLogic player;
     new BoxCollider2D collider;
 
+    private GameController gameController;
+
     void Start()
     {
         player = gameObject.GetComponentInParent<PlayerLogic>();
+        gameController = GameObject.Find("Game Controller").gameObject.GetComponent<GameController>();
         collider = GetComponent<BoxCollider2D>();
+        player = gameController.player.GetComponent<PlayerLogic>();
     }
 
     void Update()
