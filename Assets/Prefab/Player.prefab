@@ -58,7 +58,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 3}
   m_EdgeRadius: 0
 --- !u!50 &9091583819571098381
 Rigidbody2D:
@@ -258,9 +258,12 @@ MonoBehaviour:
   heldAbilities: []
   firePrefab: {fileID: 2524954543146020264, guid: 07754b5ff20db8449a046e5b872676d0, type: 3}
   gameController: {fileID: 2480514924092193047, guid: 599767a56c649b74080c279c8a1eb852, type: 3}
+  gameControllerScript: {fileID: 0}
   isPunching: 0
+  upgrades: 0
   maxHealth: 100
   currentHealth: 0
+  damage: 50
   invincibleMaxTime: 2
   invincibleCurrentTimer: 0
 --- !u!61 &7753868313382654804
