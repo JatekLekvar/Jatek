@@ -490,6 +490,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParallaxICV
       objectReference: {fileID: 0}
+    - target: {fileID: 1563528483240608903, guid: 5e9c254b4e054ae4e8d31aec0cdd3ed7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e9c254b4e054ae4e8d31aec0cdd3ed7, type: 3}
 --- !u!1001 &1179363384
@@ -719,8 +723,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8944450376005890071, guid: ad4f52c42c54cc24b82a3da63c590a06, type: 3}
+      propertyPath: maxX
+      value: 590
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944450376005890071, guid: ad4f52c42c54cc24b82a3da63c590a06, type: 3}
       propertyPath: maxY
       value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944450376005890071, guid: ad4f52c42c54cc24b82a3da63c590a06, type: 3}
+      propertyPath: minX
+      value: 382
       objectReference: {fileID: 0}
     - target: {fileID: 8944450376005890071, guid: ad4f52c42c54cc24b82a3da63c590a06, type: 3}
       propertyPath: minY

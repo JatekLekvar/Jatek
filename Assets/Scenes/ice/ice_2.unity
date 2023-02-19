@@ -346,8 +346,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8944450376005890071, guid: ad4f52c42c54cc24b82a3da63c590a06, type: 3}
+      propertyPath: maxX
+      value: 590
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944450376005890071, guid: ad4f52c42c54cc24b82a3da63c590a06, type: 3}
       propertyPath: maxY
       value: -43
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944450376005890071, guid: ad4f52c42c54cc24b82a3da63c590a06, type: 3}
+      propertyPath: minX
+      value: 382
       objectReference: {fileID: 0}
     - target: {fileID: 8944450376005890071, guid: ad4f52c42c54cc24b82a3da63c590a06, type: 3}
       propertyPath: minY
