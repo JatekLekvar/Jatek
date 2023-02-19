@@ -16183,6 +16183,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextScene: jungle_3
+  nextMusic: {fileID: 8300000, guid: a292e8aa030bbf74aa89bc1e045d765f, type: 3}
+  nextVolume: 1
   nextWorldEnterSide: 2
   gameController: {fileID: 0}
 --- !u!61 &7769557013427805546
