@@ -407,8 +407,16 @@ PrefabInstance:
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2153810436998057442, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
+      propertyPath: nextMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: b826b0508b94cdf43b3197b9c4d83071, type: 3}
+    - target: {fileID: 2153810436998057442, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
       propertyPath: nextScene
       value: ice_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2153810436998057442, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
+      propertyPath: nextVolume
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2153810436998057442, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
       propertyPath: nextWorldEnterSide

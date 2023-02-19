@@ -239,8 +239,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4973610176760088504, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
+      propertyPath: nextMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: a292e8aa030bbf74aa89bc1e045d765f, type: 3}
+    - target: {fileID: 4973610176760088504, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
       propertyPath: nextScene
       value: lobby
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973610176760088504, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
+      propertyPath: nextVolume
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4973610176760088504, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
       propertyPath: nextWorldEnterSide

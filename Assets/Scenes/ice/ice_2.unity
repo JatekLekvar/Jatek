@@ -427,8 +427,16 @@ PrefabInstance:
       value: SceneChangeTrigger Down_2
       objectReference: {fileID: 0}
     - target: {fileID: 6405824239240070323, guid: d469d34a707fd094e82af516807428ae, type: 3}
+      propertyPath: nextMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: b826b0508b94cdf43b3197b9c4d83071, type: 3}
+    - target: {fileID: 6405824239240070323, guid: d469d34a707fd094e82af516807428ae, type: 3}
       propertyPath: nextScene
       value: ice_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405824239240070323, guid: d469d34a707fd094e82af516807428ae, type: 3}
+      propertyPath: nextVolume
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6405824239240070323, guid: d469d34a707fd094e82af516807428ae, type: 3}
       propertyPath: nextWorldEnterSide
@@ -500,8 +508,16 @@ PrefabInstance:
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2153810436998057442, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
+      propertyPath: nextMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: b826b0508b94cdf43b3197b9c4d83071, type: 3}
+    - target: {fileID: 2153810436998057442, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
       propertyPath: nextScene
       value: ice_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2153810436998057442, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
+      propertyPath: nextVolume
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2153810436998057442, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
       propertyPath: nextWorldEnterSide
@@ -512,8 +528,16 @@ PrefabInstance:
       value: SceneChangeTrigger Down
       objectReference: {fileID: 0}
     - target: {fileID: 4973610176760088504, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
+      propertyPath: nextMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: b826b0508b94cdf43b3197b9c4d83071, type: 3}
+    - target: {fileID: 4973610176760088504, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
       propertyPath: nextScene
       value: ice_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973610176760088504, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
+      propertyPath: nextVolume
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4973610176760088504, guid: 3a9f1ea619e33384a8dc57bd35248943, type: 3}
       propertyPath: nextWorldEnterSide
@@ -658,8 +682,16 @@ PrefabInstance:
       value: SceneChangeTrigger Right
       objectReference: {fileID: 0}
     - target: {fileID: 6405824239240070323, guid: d469d34a707fd094e82af516807428ae, type: 3}
+      propertyPath: nextMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: b826b0508b94cdf43b3197b9c4d83071, type: 3}
+    - target: {fileID: 6405824239240070323, guid: d469d34a707fd094e82af516807428ae, type: 3}
       propertyPath: nextScene
       value: ice_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405824239240070323, guid: d469d34a707fd094e82af516807428ae, type: 3}
+      propertyPath: nextVolume
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6405824239240070323, guid: d469d34a707fd094e82af516807428ae, type: 3}
       propertyPath: nextWorldEnterSide
@@ -23740,8 +23772,16 @@ PrefabInstance:
       value: SceneChangeTrigger Right_2
       objectReference: {fileID: 0}
     - target: {fileID: 6405824239240070323, guid: d469d34a707fd094e82af516807428ae, type: 3}
+      propertyPath: nextMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: b826b0508b94cdf43b3197b9c4d83071, type: 3}
+    - target: {fileID: 6405824239240070323, guid: d469d34a707fd094e82af516807428ae, type: 3}
       propertyPath: nextScene
       value: ice_5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405824239240070323, guid: d469d34a707fd094e82af516807428ae, type: 3}
+      propertyPath: nextVolume
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6405824239240070323, guid: d469d34a707fd094e82af516807428ae, type: 3}
       propertyPath: nextWorldEnterSide
