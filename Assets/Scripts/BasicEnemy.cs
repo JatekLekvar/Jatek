@@ -127,10 +127,16 @@ public class BasicEnemy : Enemy
     public override void GetHit(Vector3 from, float force)
     {
         base.GetHit(from, force);
-
+        //Debug.Log("Enemy megütve");
         float sign = Mathf.Sign(transform.position.x - from.x);
         _velocity.y = 12f;
         _velocity.x = sign * 20f;
         hitStun = 0.5f;
+        health -= force;
+        /*
+        if(health <= 0){
+            Destroy(this.gameObject);
+        }
+        */
     }
 }

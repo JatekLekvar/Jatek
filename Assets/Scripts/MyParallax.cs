@@ -14,8 +14,10 @@ public class MyParallax : MonoBehaviour
     private Transform cameraTransform;
     private Vector3 lastCameraPosition;
     private SceneSpecs sceneSpecs;
+    private float fixY;
 
     private void Start(){
+        fixY = this.transform.position.y;
         cameraTransform = Camera.main.transform;
         lastCameraPosition = cameraTransform.position;
         sceneSpecs = GameObject.Find("Scene Specs").GetComponent<SceneSpecs>();
@@ -26,7 +28,7 @@ public class MyParallax : MonoBehaviour
     private void LateUpdate(){
         Vector3 deltaMovement = cameraTransform.position - lastCameraPosition;
         transform.position += new Vector3(deltaMovement.x * parallaxEffectMultiplier.x, (sceneSpecs.maxY + sceneSpecs.minY)/2,0f);
-        transform.position = new Vector3(transform.position.x, ((sceneSpecs.maxY + sceneSpecs.minY)/2)-0.5f,transform.position.z);
+        transform.position = new Vector3(transform.position.x, fixY,transform.position.z);
         lastCameraPosition = cameraTransform.position;
     }
 }
