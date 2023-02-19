@@ -19,6 +19,7 @@ public class PlayerLogic : MonoBehaviour
     public GameObject gameController;
     public GameController gameControllerScript;
     public bool isPunching;
+    public int upgrades = 0;
 
     private float gravity = -64f;
     private float runSpeed = 10f;
@@ -153,7 +154,10 @@ public class PlayerLogic : MonoBehaviour
             state = State.Jump;
         }
 
-        bool spit = Input.GetKey(KeyCode.LeftShift);
+        bool spit = false;
+        if(upgrades >= 2){
+            spit = Input.GetKey(KeyCode.LeftShift);
+        }
 
         if (crouch)
         {
@@ -169,7 +173,7 @@ public class PlayerLogic : MonoBehaviour
                 state = State.Attack;
                 _attackTimer = AttackLength;
 
-                if (spit)
+                if (spit && upgrades >= 2)
                 {
                     GameObject fire = (GameObject)Instantiate(firePrefab, transform.position, Quaternion.identity);
                     Fire fireComp = fire.GetComponent<Fire>();
@@ -220,21 +224,45 @@ public class PlayerLogic : MonoBehaviour
                 case State.Idle:
                     {
                         isPunching = false;
-                        _animator.Play("Idle");
+                        switch(upgrades){
+                            case 0 : _animator.Play("Idle");
+                            break;
+                            case 1 : _animator.Play("Idle1");
+                            break;
+                            case 2 : _animator.Play("Idle2");
+                            break;
+                        }
+                        //_animator.Play("Idle");
                     }
                     break;
 
                 case State.Walk:
                     {
                         isPunching = false;
-                        _animator.Play("Walk");
+                        //_animator.Play("Walk");
+                        switch(upgrades){
+                            case 0 : _animator.Play("Walk");
+                            break;
+                            case 1 : _animator.Play("Walk1");
+                            break;
+                            case 2 : _animator.Play("Walk2");
+                            break;
+                        }
                     }
                     break;
 
                 case State.Jump:
                     {
                         isPunching = false;
-                        _animator.Play("Jump");
+                        //_animator.Play("Jump");
+                        switch(upgrades){
+                            case 0 : _animator.Play("Jump");
+                            break;
+                            case 1 : _animator.Play("Jump1");
+                            break;
+                            case 2 : _animator.Play("Jump2");
+                            break;
+                        }
                     }
                     break;
 
@@ -247,15 +275,29 @@ public class PlayerLogic : MonoBehaviour
 
                 case State.Attack:
                     {
-                        if (spit)
+                        if (spit && upgrades >= 2)
                         {
                             isPunching = false;
-                            _animator.Play("Spit");
+                            switch(upgrades){
+                            case 2 : _animator.Play("Punch2");
+                            break;
+                            case 1 : _animator.Play("Punch1");
+                            break;
+                            }
+                            
+                            //_animator.Play("Spit");
+                            
                         }
                         else
                         {
                             isPunching = true;
-                            _animator.Play("Punch");
+                            //_animator.Play("Punch");
+                            switch(upgrades){
+                            case 0 : _animator.Play("Punch");
+                            break;
+                            case 1 : _animator.Play("Punch1");
+                            break;
+                        }
                         }
                     }
                     break;
@@ -297,9 +339,20 @@ public class PlayerLogic : MonoBehaviour
         if (obj.name == "AbilityTrigger")
         {
             obj = obj.transform.parent.gameObject;
-            gameController.GetComponent<Inventory>().AddToInvertory(obj);
             Ability ability = obj.GetComponent<Ability>();
-            heldAbilities.Add(ability.identifier);
+            if(ability.identifier == "upgrade1"){
+                upgrades = 1;
+            }
+            else if(ability.identifier == "upgrade2"){
+                upgrades = 2;
+            }
+            else if(ability.identifier == "upgrade3"){
+                upgrades = 3;
+            }
+            else{
+                gameController.GetComponent<Inventory>().AddToInvertory(obj);
+                heldAbilities.Add(ability.identifier);
+            }
             //Destroy(obj);
             obj.SetActive(false);
             //obj.transform.position.Set(-100,0,0);

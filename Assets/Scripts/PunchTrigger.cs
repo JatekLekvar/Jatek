@@ -21,7 +21,7 @@ public class PunchTrigger : MonoBehaviour
         Enemy enemy = collider.gameObject.GetComponent<Enemy>();
         if (enemy != null)
         {
-            enemy.GetHit(transform.position, 4f);
+            enemy.GetHit(transform.position, 100f);
         }
     }
 }

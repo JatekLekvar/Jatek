@@ -38,7 +38,7 @@ public class Parallax : MonoBehaviour
 
         if(hasForegorund)
         {
-            Vector3 position = calculationPos / 30f;
+            Vector3 position = calculationPos / 50f;
             position.z = foregroundLayer.position.z;
             position.y = position.y-2f;
             foregroundLayer.position = position + offSet;

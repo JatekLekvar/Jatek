@@ -1,5 +1,12 @@
 using UnityEngine;
 
+enum ChargingEnemyState
+{
+    Idle,
+    Rest,
+    Charging,
+    Stop
+}
 public class ChargingEnemy : Enemy
 {
     public GameObject firePrefab;
@@ -8,6 +15,8 @@ public class ChargingEnemy : Enemy
     public float runSpeed = 10f;
     private float groundDamping = 28f;
     private float inAirDamping = 8f;
+    private ChargingEnemyState state;
+    private ChargingEnemyState oldState;
 
     [HideInInspector]
     private float normalizedHorizontalSpeed = 1;
@@ -40,11 +49,13 @@ public class ChargingEnemy : Enemy
     private float stopTime;
 
     private bool shouldFlip = false;
+    private SpriteAnimator _animator;
     void Awake()
     {
         _controller = GetComponent<PlayerPhysics>();
         _collider = GetComponent<BoxCollider2D>();
         gameController = GameObject.Find("Game Controller").GetComponent<GameController>();
+        _animator = GetComponent<SpriteAnimator>();
 
 
         tmpRunSpeed = runSpeed;
@@ -56,10 +67,12 @@ public class ChargingEnemy : Enemy
     void Update()
     {
         player = gameController.player;
+        oldState = state;
 
         //If in range, find the direction
         if(InRange(player, this.gameObject, chargeRange) && chargeTime >= chargeDuration && stopTime >= stopMaxTime){
             //Debug.Log("Első rész");
+            state = ChargingEnemyState.Charging;
             if(hasDirection == false){
                 direction = player.transform.position - this.gameObject.transform.position;
                 hasDirection = true;
@@ -110,6 +123,7 @@ public class ChargingEnemy : Enemy
         else if(stopTime >= stopMaxTime){
             
             //Debug.Log("Harmadik rész");
+            state = ChargingEnemyState.Idle;
 
             if (movementTimer >= movementMaxTime)
             {
@@ -149,16 +163,20 @@ public class ChargingEnemy : Enemy
             //Debug.Log("I'm stopping");
         }
 
+        //Charge utáni stop
         if(stopTime <= stopMaxTime){
             stopTime += Time.deltaTime;
+            state = ChargingEnemyState.Stop;
             //Debug.Log("Being stopped");
         }
+        //Patrol közben rest
         else{
             if(restingTime <= restMaxTime){
                 restingTime += Time.deltaTime;
                 movementTimer = 0f;
                 runSpeed = 0f;
                 shouldFlip = true;
+                state = ChargingEnemyState.Rest;
                 //Debug.Log("Resting...");
             }
             else if (shouldFlip){
@@ -174,6 +192,42 @@ public class ChargingEnemy : Enemy
             
         }
         
+        if(InRange(this.gameObject, gameController.player,2f) && stopTime >= stopMaxTime){
+            Debug.Log("Player has been hit");
+            gameController.player.GetComponent<PlayerLogic>().GetHit(Vector3.zero,50f);
+        }
+
+        if (state != oldState)
+        {
+            switch (state)
+            {
+                case ChargingEnemyState.Idle:
+                    {
+                        Debug.Log("Idle");
+                        //_animator.Play("Idle");
+                    }
+                    break;
+
+                case ChargingEnemyState.Rest:
+                    {
+                        Debug.Log("Rest");
+                        //_animator.Play("Exploading");
+                    }
+                    break;
+                case ChargingEnemyState.Charging:
+                    {
+                        Debug.Log("Charging");
+                        //_animator.Play("Exploaded");
+                    }
+                    break;
+                case ChargingEnemyState.Stop:
+                    {
+                        Debug.Log("Stop");
+                        //_animator.Play("Exploaded");
+                    }
+                    break;
+            }
+        }
 
     }
 

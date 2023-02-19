@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+
+enum PathfindingEnemyState
+{
+    Idle,
+    Exploading,
+    Exploaded
+}
 public class PathfindingEnemy : Enemy
 {
     [Header("Pathfinding")]
@@ -20,8 +27,13 @@ public class PathfindingEnemy : Enemy
     public bool followEnabled = true;
     public bool jumpEnabled = true;
     public bool directionLookEnabled = true;
+    public float ExplosionMaxTime = 3f;
+    private float explosionTime = 0f;
 
     public GameObject gameController;
+    private GameController gameControllerScript;
+    private SpriteAnimator _animator;
+    //private bool exploading;
 
     private Path path;
     private int currentWaypoint = 0;
@@ -30,6 +42,10 @@ public class PathfindingEnemy : Enemy
     //Rigidbody2D rb;
     private PlayerPhysics _controller;
     private Vector3 _velocity;
+    private PathfindingEnemyState state;
+    private PathfindingEnemyState oldState;
+    
+    //private float exploadDelay = 0f;
 
     public void Start()
     {
@@ -39,15 +55,57 @@ public class PathfindingEnemy : Enemy
         InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
 
         gameController = GameObject.Find("Game Controller");
+        gameControllerScript = gameController.GetComponent<GameController>();
+        _animator = GetComponent<SpriteAnimator>();
+        target = gameControllerScript.player.transform;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        target = gameController.GetComponent<GameController>().player.transform;
+        oldState = state;
+        target = gameControllerScript.player.transform;
 
         if (TargetInDistance() && followEnabled)
         {
             PathFollow();
+        }
+
+        if(InRange(this.gameObject, gameControllerScript.player,1f)){
+            state = PathfindingEnemyState.Exploading;
+            explosionTime += Time.deltaTime;
+
+            if(explosionTime >= ExplosionMaxTime){
+                state = PathfindingEnemyState.Exploaded;
+                gameControllerScript.player.GetComponent<PlayerLogic>().GetHit(Vector3.zero,100f);
+            }
+        }
+        else{
+            explosionTime = 0;
+            state = PathfindingEnemyState.Idle;
+        }
+
+        if (state != oldState)
+        {
+            switch (state)
+            {
+                case PathfindingEnemyState.Idle:
+                    {
+                        _animator.Play("Idle");
+                    }
+                    break;
+
+                case PathfindingEnemyState.Exploading:
+                    {
+                        _animator.Play("Exploading");
+                    }
+                    break;
+                case PathfindingEnemyState.Exploaded:
+                    {
+                        //_animator.Play("Exploaded");
+                        Destroy(gameObject);
+                    }
+                    break;
+            }
         }
     }
 
@@ -80,6 +138,18 @@ public class PathfindingEnemy : Enemy
         // Direction Calculation
         Vector3 direction = ((Vector3)path.vectorPath[currentWaypoint] - transform.position).normalized;
         //Debug.Log("Direction: " + direction);
+
+        if(direction.x > 0f){
+            if(transform.localScale.x > 0f){
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            }
+        }
+        else{
+            if(transform.localScale.x < 0f){
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            }
+        }
+
         _velocity = direction * speed;
 
         // Jump
@@ -134,6 +204,18 @@ public class PathfindingEnemy : Enemy
         {
             path = p;
             currentWaypoint = 0;
+        }
+    }
+
+    public bool InRange(GameObject gameObject1, GameObject gameObject2, float range)
+    {
+        if (Mathf.Abs(gameObject1.transform.position.x - gameObject2.transform.position.x) < range && Mathf.Abs(gameObject1.transform.position.y - gameObject2.transform.position.y) < range)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }
