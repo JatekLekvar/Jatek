@@ -203,27 +203,27 @@ public class ChargingEnemy : Enemy
             {
                 case ChargingEnemyState.Idle:
                     {
-                        Debug.Log("Idle");
-                        //_animator.Play("Idle");
+                        //Debug.Log("Idle");
+                        _animator.Play("Idle");
                     }
                     break;
 
                 case ChargingEnemyState.Rest:
                     {
-                        Debug.Log("Rest");
-                        //_animator.Play("Exploading");
+                        //Debug.Log("Rest");
+                        _animator.Play("Rest");
                     }
                     break;
                 case ChargingEnemyState.Charging:
                     {
-                        Debug.Log("Charging");
-                        //_animator.Play("Exploaded");
+                        //Debug.Log("Charging");
+                        _animator.Play("Charging");
                     }
                     break;
                 case ChargingEnemyState.Stop:
                     {
                         Debug.Log("Stop");
-                        //_animator.Play("Exploaded");
+                        _animator.Play("Stop");
                     }
                     break;
             }

@@ -175,7 +175,8 @@ public class PlayerLogic : MonoBehaviour
 
                 if (spit && upgrades >= 2)
                 {
-                    GameObject fire = (GameObject)Instantiate(firePrefab, transform.position, Quaternion.identity);
+                    Vector3 spawnPos = new Vector3 (transform.position.x ,transform.position.y-1 ,transform.position.z);
+                    GameObject fire = (GameObject)Instantiate(firePrefab, spawnPos, Quaternion.identity);
                     Fire fireComp = fire.GetComponent<Fire>();
                     fireComp.direction = left ? -1f : 1f;
                 }
@@ -231,6 +232,8 @@ public class PlayerLogic : MonoBehaviour
                             break;
                             case 2 : _animator.Play("Idle2");
                             break;
+                            case 3 : _animator.Play("Idle3");
+                            break;
                         }
                         //_animator.Play("Idle");
                     }
@@ -247,6 +250,8 @@ public class PlayerLogic : MonoBehaviour
                             break;
                             case 2 : _animator.Play("Walk2");
                             break;
+                            case 3 : _animator.Play("Walk3");
+                            break;
                         }
                     }
                     break;
@@ -261,6 +266,8 @@ public class PlayerLogic : MonoBehaviour
                             case 1 : _animator.Play("Jump1");
                             break;
                             case 2 : _animator.Play("Jump2");
+                            break;
+                            case 3 : _animator.Play("Jump3");
                             break;
                         }
                     }
@@ -279,9 +286,9 @@ public class PlayerLogic : MonoBehaviour
                         {
                             isPunching = false;
                             switch(upgrades){
-                            case 2 : _animator.Play("Punch2");
+                            case 2 : _animator.Play("Spit2");
                             break;
-                            case 1 : _animator.Play("Punch1");
+                            case 3 : _animator.Play("Spit3");
                             break;
                             }
                             
@@ -296,6 +303,10 @@ public class PlayerLogic : MonoBehaviour
                             case 0 : _animator.Play("Punch");
                             break;
                             case 1 : _animator.Play("Punch1");
+                            break;
+                            case 2 : _animator.Play("Punch2");
+                            break;
+                            case 3 : _animator.Play("Punch3");
                             break;
                         }
                         }
