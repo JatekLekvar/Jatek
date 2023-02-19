@@ -16,6 +16,13 @@ public class ScreenCamera : MonoBehaviour
 
     void Update()
     {
+        GameObject sceneSpecs = GameObject.Find("Scene Specs");
+        if(sceneSpecs != null){
+            SceneSpecs sceneSpecsScript = sceneSpecs.GetComponent<SceneSpecs>();
+            minY = sceneSpecsScript.minY;
+            maxY = sceneSpecsScript.maxY;
+        }
+
         Vector3 diff = target.position - transform.position;
 
         if (diff.x > limitX)

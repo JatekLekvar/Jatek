@@ -13,7 +13,7 @@ public class Parallax : MonoBehaviour
     public Vector3 targetPos;
 
     void Start(){
-        spawnPosition = GameObject.Find("Player").transform.position;
+        spawnPosition = GameObject.Find("Camera").transform.position;
         offSet = spawnPosition;
     }
 
