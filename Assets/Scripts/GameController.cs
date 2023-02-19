@@ -10,12 +10,15 @@ public class GameController : MonoBehaviour
     public GameObject spaceShipEntrance;
 
     public NextWorldEnterSide nextWorldEnterSide;
+    public bool testing;
 
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        nextWorldEnterSide = NextWorldEnterSide.Up;
-        SceneManager.LoadScene("Space Ship");
+        if(!testing){
+            nextWorldEnterSide = NextWorldEnterSide.Up;
+            SceneManager.LoadScene("Space Ship");
+        }
     }
 
     void Update(){

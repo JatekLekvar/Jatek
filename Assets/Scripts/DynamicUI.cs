@@ -11,9 +11,9 @@ public class DynamicUI : MonoBehaviour
     [SerializeField] private RectTransform rectTransform;
 
     void Awake(){
-        backgroundRectTransform = transform.Find("background").GetComponent<RectTransform>();
-        textMeshPro = transform.Find("text").GetComponent<TextMeshProUGUI>();
-        rectTransform = transform.GetComponent<RectTransform>();
+        //backgroundRectTransform = transform.Find("background").GetComponent<RectTransform>();
+        //textMeshPro = transform.Find("text").GetComponent<TextMeshProUGUI>();
+        //rectTransform = transform.GetComponent<RectTransform>();
 
         //SetText("Testing...");
         this.gameObject.SetActive(false);
